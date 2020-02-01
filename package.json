@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "anand's blog",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandzhang/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anandzhang/blog/issues"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
