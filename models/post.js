@@ -5,12 +5,19 @@ mongoose.connect('mongodb://localhost/blog', {
 });
 
 const postSchema = new mongoose.Schema({
+  no: {
+    type: String,
+    required: true
+  },
   title: {
     type: String,
     required: true
   },
   summary: String,
-  category: Array,
+  category: {
+    type: String,
+    required: true
+  },
   tags: Array,
   createTime: {
     type: Date,
