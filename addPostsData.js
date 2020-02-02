@@ -41,9 +41,12 @@ function getData(fullPath) {
   const category = path.dirname(fullPath).replace(postsDir, '')
   const nameSplit = path.basename(fullPath).split('-')
   const no = nameSplit.shift()
+  const requestPath = path.join('/', path.dirname(fullPath), no)
   let title = nameSplit.shift()
   title = title.replace(path.extname(title), '')
-  return { no, title, category }
+  const content = fs.readFileSync(fullPath).toString()
+  return { no, title, category, requestPath, content }
 }
 
+Post.deleteMany({}, err => console.log(err))
 readDir(postsDir)

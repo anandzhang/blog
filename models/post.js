@@ -18,12 +18,20 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  requestPath: {
+    type: String,
+    required: true
+  },
   tags: Array,
   createTime: {
     type: Date,
     required: true
   },
-  updateTime: Date
+  updateTime: Date,
+  content: {
+    type: String,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('Post', postSchema)

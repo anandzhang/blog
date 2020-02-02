@@ -4,7 +4,7 @@
 
 下载工具 https://www.microsoft.com/zh-cn/software-download/windows10
 
-![tool](images\tool.png)
+![tool](/images/os/windows/2/tool.png)
 
 ## 镜像下载
 
@@ -14,16 +14,16 @@
 
 3. 选择 为另一台电脑安装介质
 
-   ![step1](images\step1.png)
+   ![step1](/images/os/windows/2/step1.png)
 
 4. 选择需要下载哪一个版本的Windows 10 镜像
 
-   ![step2](images\step2.png)
+   ![step2](/images/os/windows/2/step2.png)
 
 5. 选择 IOS文件，下载ISO镜像
 
-   ![step3](images\step3.png)
+   ![step3](/images/os/windows/2/step3.png)
 
 6. 选择下载路径，然后等待下载结束
 
-   ![step4](images\step4.png)
+   ![step4](/images/os/windows/2/step4.png)
