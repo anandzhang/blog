@@ -3,21 +3,27 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 const port = 3000
+const Post = require('./models/post')
+
+// 配置模板引擎
+app.engine('html', require('express-art-template'))
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
 
 // 静态资源
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
-  fs.readFile('views/index.html', (err, data) => {
-    if (err) return res.status(500).send('index.html error')
-    res.send(data.toString())
-  })
+  res.render('index')
 })
 
 app.get('/posts', (req, res) => {
-  fs.readFile('views/posts.html', (err, data) => {
-    if (err) return res.status(500).send('posts.html error')
-    res.send(data.toString())
+  Post.find((err, docArr) => {
+    docArr.forEach((value) => {
+      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
+      value.createTimeString = time
+    })
+    res.render('posts', { docArr })
   })
 })
 
