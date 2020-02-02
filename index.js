@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const md = require('markdown-it')()
 const express = require('express')
 const app = express()
 const port = 3000
@@ -12,6 +13,7 @@ app.set('view engine', 'html');
 
 // 静态资源
 app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/images', express.static(path.join(__dirname, 'posts/images')))
 
 app.get('/', (req, res) => {
   res.render('index')
@@ -24,6 +26,14 @@ app.get('/posts', (req, res) => {
       value.createTimeString = time
     })
     res.render('posts', { docArr })
+  })
+})
+
+app.get('/posts/*/\\d+', (req, res) => {
+  Post.findOne({ requestPath: req.path }, (err, doc) => {
+    if (err) return res.status(500).send(err)
+    if (!doc) return res.status(404).send('404 文章不存在')
+    res.render('post-template', { title: doc.title, content: md.render(doc.content) })
   })
 })
 
