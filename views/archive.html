@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anand's Blog | 归档</title>
+    <link rel="icon" type="image/ico" href="/public/img/favicon.ico">
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/common.css">
+    <link rel="stylesheet" href="/public/css/archive.css">
+  </head>
+  <body>
+    <div class="nav">
+      <div class="container">
+        <h1 class="title">Anand</h1>
+        <p class="subtitle">personal blog</p>
+        <ul class="nav-list">
+          <li><a href="/">主页</a></li>
+          <li><a href="/posts">文章</a></li>
+          <li><a href="/archive">归档</a></li>
+          <li><a href="/about">关于我</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="content">
+        <h2>目录</h2>
+        <ul class="sort category">
+          {{each sortByCategory}}
+          <li><a href="/archive/category/{{$value}}">{{$value}}</a></li>
+          {{/each}}
+        </ul>
+        <h2>标签</h2>
+        <ul class="sort tag">
+          {{each sortByTag}}
+          <li><a href="/archive/tag/{{$value}}">{{$value}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
