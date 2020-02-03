@@ -7,8 +7,7 @@ html, body {
 ------------------------------ */
 
 .nav {
-  position: relative;
-  float: left;
+  position: fixed;
   width: 300px;
   height: 100%;
   background-color: #eee;
@@ -46,7 +45,7 @@ h1.title+.subtitle {
 ------------------------------ */
 
 .main {
-  float: left;
+  margin-left: 300px;
   width: calc(100% - 300px);
   height: 100%;
 }
