@@ -78,6 +78,10 @@ app.get('/archive/tag/:tag', (req, res) => {
   })
 })
 
+app.get('/about', (req, res) => {
+  res.render('about')
+})
+
 app.listen(port, () => {
   console.log(`app is running on the http://localhost:${port}`)
 })
