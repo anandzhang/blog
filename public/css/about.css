@@ -1,0 +1,12 @@
+.main .paragraph {
+  margin: 30px auto;
+}
+
+.paragraph p {
+  margin: 6px 0;
+}
+
+.paragraph .right {
+  float: right;
+  margin: 20px;
+}
