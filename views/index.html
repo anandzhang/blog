@@ -1,39 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anand's Blog</title>
-    <link rel="icon" type="image/ico" href="/public/img/favicon.ico">
-    <link rel="stylesheet" href="/public/css/reset.css">
-    <link rel="stylesheet" href="/public/css/common.css">
-    <link rel="stylesheet" href="/public/css/index.css">
-  </head>
-  <body>
-    <div class="nav">
-      <div class="container">
-        <h1 class="title">Anand</h1>
-        <p class="subtitle">personal blog</p>
-        <ul class="nav-list">
-          <li><a href="/">主页</a></li>
-          <li><a href="/posts">文章</a></li>
-          <li><a href="/archive">归档</a></li>
-          <li><a href="/about">关于我</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="main">
-      <div class="content">
-        <p><span class="comment">嗨! 我是</span> Anand Zhang，</p>
-        <p>一名前端开发者。</p>
-        <p>希望我的文章能给你带来帮助！</p>
-        <p class="comment">网站还在一步步建设中，你如果在访问过程中遇到什么问题可以向我反馈哟~</p>
-        <p class="comment">本站唯一联系方式：anandzhangnew@163.com</p>
-        <p class="comment">主页还没想好更好的内容，那就留下我喜欢的一句话吧：</p>
-        <p>人而不学，其犹正墙面而立。 ——《尚书》</p>
-        <p></p>
-      </div>
-    </div>
-  </body>
-</html>
+{{extend './layout.html'}}
+
+{{block 'content'}}
+<p><span class="comment">嗨! 我是</span> Anand Zhang，</p>
+<p>一名前端开发者。</p>
+<p>希望我的文章能给你带来帮助！</p>
+<p class="comment">网站还在一步步建设中，你如果在访问过程中遇到什么问题可以向我反馈哟~</p>
+<p class="comment">本站唯一联系方式：anandzhangnew@163.com</p>
+<p class="comment">主页还没想好更好的内容，那就留下我喜欢的一句话吧：</p>
+<p>人而不学，其犹正墙面而立。 ——《尚书》</p>
+{{/block}}

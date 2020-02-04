@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{block 'title'}}Anand's Blog{{/block}}</title>
+    <link rel="icon" type="image/ico" href="/public/img/favicon.ico">
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/common.css">
+    {{block 'css'}}
+    <link rel="stylesheet" href="/public/css/index.css">
+    {{/block}}
+  </head>
+  <body>
+    <div class="nav">
+      <div class="container">
+        <h1 class="title">Anand</h1>
+        <p class="subtitle">personal blog</p>
+        <ul class="nav-list">
+          <li><a href="/">主页</a></li>
+          <li><a href="/posts">文章</a></li>
+          <li><a href="/archive">归档</a></li>
+          <li><a href="/about">关于我</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="content">
+        {{block 'content'}}{{/block}}
+      </div>
+    </div>
+  </body>
+</html>
