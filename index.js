@@ -37,6 +37,47 @@ app.get('/posts/*/\\d+', (req, res) => {
   })
 })
 
+app.get('/archive', (req, res) => {
+  Post.find({}, { _id: 0, category: 1, tags: 1 }, (err, docs) => {
+    if (err) return res.status(500).send(err)
+    const sortByCategory = []
+    let sortByTag = []
+    docs.forEach((value) => {
+      const category = value.category.split('/').shift()
+      if (sortByCategory.indexOf(category) < 0) {
+        sortByCategory.push(value.category.split('/').shift())
+      }
+      // 已存在的标签不再重复添加
+      value.tags.forEach((value) => {
+        if (sortByTag.indexOf(value) < 0) {
+          sortByTag.push(value)
+        }
+      })
+    })
+    res.render('archive', { sortByCategory, sortByTag })
+  })
+})
+
+app.get('/archive/category/:category', (req, res) => {
+  Post.find({ category: { '$regex': `${req.params.category}/*` } }, (err, docArr) => {
+    docArr.forEach((value) => {
+      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
+      value.createTimeString = time
+    })
+    res.render('posts', { docArr })
+  })
+})
+
+app.get('/archive/tag/:tag', (req, res) => {
+  Post.find({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, docArr) => {
+    docArr.forEach((value) => {
+      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
+      value.createTimeString = time
+    })
+    res.render('posts', { docArr })
+  })
+})
+
 app.listen(port, () => {
   console.log(`app is running on the http://localhost:${port}`)
 })
