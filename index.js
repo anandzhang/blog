@@ -47,7 +47,12 @@ app.get('/archive', (req, res) => {
       if (sortByCategory.indexOf(category) < 0) {
         sortByCategory.push(value.category.split('/').shift())
       }
-      sortByTag = sortByTag.concat(value.tags)
+      // 已存在的标签不再重复添加
+      value.tags.forEach((value) => {
+        if (sortByTag.indexOf(value) < 0) {
+          sortByTag.push(value)
+        }
+      })
     })
     res.render('archive', { sortByCategory, sortByTag })
   })
