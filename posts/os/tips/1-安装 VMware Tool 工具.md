@@ -1,0 +1,48 @@
+---
+typora-root-url: ../..
+---
+
+# 安装 VMware Tool 工具
+
+使用 VMware 时，安装好VMware Tool工具可以更好的复制粘贴、从虚拟机内拉取文件等
+
+## 准备工作
+
+![vmwaretool](/images/os/tips/1/vmwaretool.png)
+
+## Windows
+
+双击光盘安装就好
+
+## Linux
+
+1. 打开光盘
+
+   ![linux](/images/os/tips/1/linux.png)
+
+2. 空白处右键，在该位置打开终端
+
+3. 移动这个文件到 `/usr/local/src` 下：
+
+   ```shell
+   $ sudo mv XXXX.tar.gz /usr/local/src
+   ```
+
+4. 解压该文件：
+
+   ```shell
+   $ cd /usr/local/src
+   $ sudo tar -xzvf VMwareToolsXXXXXX.tar.gz
+   ```
+
+5. 进入到解压后的文件内：
+
+   ```shell
+   $ cd XXX
+   ```
+
+6. 安装VMwareTool ：
+
+   ```shell
+   $ sudo ./vmware-install.pl
+   ```

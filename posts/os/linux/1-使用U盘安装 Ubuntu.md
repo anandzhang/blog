@@ -1,3 +1,7 @@
+---
+typora-root-url: ../..
+---
+
 # 使用U盘安装 Ubuntu
 
 使用U盘安装ubuntu linux系统，实现 Windows 和 Ubuntu 双系统。
