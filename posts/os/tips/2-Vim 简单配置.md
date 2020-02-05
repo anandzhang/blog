@@ -30,4 +30,4 @@ typora-root-url: ../..
 
 ## 效果图
 
-![effect-vim](/images/os/tips/2/effect-vim.png)
+![effect](/images/os/tips/2/effect.png)

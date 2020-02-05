@@ -8,7 +8,7 @@ typora-root-url: ../..
 
 ## 效果图
 
-![effect-terminal](/images/os/mac/1/effect-terminal.png)
+![effect-terminal](/images/os/mac/1/effect.png)
 
 ## iTerm 终端配置
 
@@ -162,6 +162,6 @@ typora-root-url: ../..
 
 ## Vim 简单配置
 
-![effect-vim](/images/os/mac/1/effect-vim.png)
+![effect](/images/os/mac/1/effect.png)
 
-请看 [vim 简单配置](http://anandzhang.com/posts/os/tips/2) 
+请看 [vim 简单配置](/posts/os/tips/2)

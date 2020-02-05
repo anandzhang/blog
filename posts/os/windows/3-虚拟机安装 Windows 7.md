@@ -2,8 +2,6 @@
 typora-root-url: ../..
 ---
 
-# Win7 虚拟机安装
-
 # 虚拟机安装 Windows 7
 
 通过 VMware 安装 Win7 虚拟机
