@@ -1,9 +1,9 @@
 ---
 typora-root-url: ../..
-tags: linux,ubuntu,deepin
-createTime: 2019-5-30
-updateTime: 2019-5-30
-summary: 更换linux系统的软件镜像源，使得包管理器通过更换的国内源去安装应用能有更好的速度。
+tags: linux,ubuntu
+createTime: 2020-1-20
+updateTime: 2020-1-20
+summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。安装需要：可使用的 windows系统、4G及其以上大小的U盘。
 ---
 
 # 使用U盘安装 Ubuntu

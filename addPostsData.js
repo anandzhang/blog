@@ -48,8 +48,7 @@ function getDataFromPath(fullPath) {
   const requestPath = path.join('/', path.dirname(fullPath), no)
   let title = nameSplit.shift()
   title = title.replace(path.extname(title), '')
-  const content = fs.readFileSync(fullPath).toString()
-  return { no, title, category, requestPath, content }
+  return { no, title, category, requestPath }
 }
 
 /**
@@ -68,12 +67,13 @@ function parseYAMLFrontMatter(markdownFileString) {
     updateTime: /updateTime:\s*(.*)/,
     summary: /summary:\s(.*)/
   }
+  const content = markdownFileString.replace(regs.frontMatter, '')
   const frontMatter = markdownFileString.match(regs.frontMatter)[1]
   const tags = frontMatter.match(regs.tags)[1]
   const createTime = frontMatter.match(regs.createTime)[1]
   const updateTime = frontMatter.match(regs.updateTime)[1]
   const summary = frontMatter.match(regs.summary)[1]
-  return { tags: tags.split(','), createTime, updateTime, summary }
+  return { tags: tags.split(','), createTime, updateTime, summary, content }
 }
 
 Post.deleteMany({}, err => console.log(err))
