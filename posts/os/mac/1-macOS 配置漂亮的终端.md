@@ -1,5 +1,9 @@
 ---
 typora-root-url: ../..
+tags: macOS,terminal,iTerm
+createTime: 2019-8-5
+updateTime: 2019-8-5
+summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 iTerm 和 oh-my-zsh 让终端具有更好的使用效果。
 ---
 
 # macOS 配置漂亮的终端

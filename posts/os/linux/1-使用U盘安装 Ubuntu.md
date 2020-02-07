@@ -1,5 +1,9 @@
 ---
 typora-root-url: ../..
+tags: linux,ubuntu,deepin
+createTime: 2019-5-30
+updateTime: 2019-5-30
+summary: 更换linux系统的软件镜像源，使得包管理器通过更换的国内源去安装应用能有更好的速度。
 ---
 
 # 使用U盘安装 Ubuntu

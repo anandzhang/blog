@@ -1,5 +1,9 @@
 ---
 typora-root-url: ../..
+tags: linux,ubuntu
+createTime: 2020-1-20
+updateTime: 2020-1-20
+summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。安装需要：可使用的 windows系统、4G及其以上大小的U盘。
 ---
 
 # Linux 换源方法
@@ -18,6 +22,8 @@ typora-root-url: ../..
 ## Ubuntu 换源方法
 
 > Xubunut、Kubuntu都是ubuntu发行版，只是桌面环境不同，换源也是一样。
+
+> 如果你需要ubuntu cn国区源，请看[Ubuntu cn国内源](/posts/os/linux/3) 
 
 1. 备份原来的 sorces 文件
 
