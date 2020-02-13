@@ -25,11 +25,16 @@ html, body {
   height: 300px;
 }
 
-h1.title {
+.title {
   margin: 10px auto 0;
+  font-size: 32px;
+  font-weight: bold;
 }
 
-h1.title+.subtitle {
+.title .subtitle {
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
   text-transform: uppercase;
 }
 
