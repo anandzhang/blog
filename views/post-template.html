@@ -1,5 +1,9 @@
 {{extend './layout.html'}}
 
+{{block 'metainfo'}}
+<meta name="description" content="{{description}}">
+{{/block}}
+
 {{block 'title'}}Anand's Blog | {{title}}{{/block}}
 
 {{block 'css'}}
