@@ -13,6 +13,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  keywords: {
+    type: String,
+    required: true
+  },
   summary: String,
   category: {
     type: String,

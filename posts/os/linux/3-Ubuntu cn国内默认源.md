@@ -3,6 +3,7 @@ typora-root-url: ../..
 tags: linux,ubuntu
 createTime: 2019-5-30
 updateTime: 2019-5-30
+keywords: ubuntu换源,ubuntu官方源
 summary: ubuntu安装时为地区添加的默认软件源，ubuntu cn源其实速度也不错的。
 ---
 

@@ -3,6 +3,7 @@ typora-root-url: ../..
 tags: windows
 createTime: 2018-3-2
 updateTime: 2019-12-2
+keywords: 
 summary: 使用U盘重装 Windows 10，还你一个最纯净的Win10。需求：8G及其以上大小的U盘、一个可用的Windows系统。
 ---
 
