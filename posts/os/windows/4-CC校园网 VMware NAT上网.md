@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../..
+typora-root-url: ../../
 tags: NSUCC,VMware
 createTime: 2018-1-4
 updateTime: 2019-7-21

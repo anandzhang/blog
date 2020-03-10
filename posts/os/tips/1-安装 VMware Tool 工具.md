@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../..
+typora-root-url: ../../
 tags: VMware
 createTime: 2018-1-4
 updateTime: 2018-1-4

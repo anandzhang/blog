@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../..
+typora-root-url: ../../
 tags: windows,ISO
 createTime: 2018-3-2
 updateTime: 2018-3-2

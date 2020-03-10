@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../..
+typora-root-url: ../../
 tags: macOS,linux,vim
 createTime: 2019-8-5
 updateTime: 2019-8-5
