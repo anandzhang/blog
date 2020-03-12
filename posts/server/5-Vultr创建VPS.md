@@ -50,6 +50,10 @@ VPS服务器的提供商有很多，文章主要讲解国外提供商Vultr的服
    ![deploy](/images/server/5/deploy.png)
 
    ![deploy2](/images/server/5/deploy2.png)
+   
+7. 等待安装结束
+
+   ![installing](/images/server/5/installing.png)
 
 ## 连接服务器
 

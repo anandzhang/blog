@@ -4,22 +4,22 @@ tags: ivy
 createTime: 2020-3-10
 updateTime: 2020-3-10
 keywords: v2ray
-summary: 使用V2Ray配置 WebSocket + TLS + Web 实现https伪装。
+summary: 使用V2Ray配置 WebSocket + TLS + Nginx 实现https伪装。
 ---
 
-# V2Ray的wss配置
+# V2Ray的WSS配置
 
 关于 V2Ray 是什么有什么用，不赘述。
 
 V2Ray 的配置和概念相对于 Shadowsocks(R) 要复杂，Shadowsocks(R) 简单易用，V2Ray 更复杂但功能强大，所以它更有学习和折腾的意义。
 
-> 该教程是是在CentOS 7 64位系统下使用Nginx进行配置。
+> 该教程是在CentOS 7 64位系统下使用Nginx进行配置。
 >
 > 该教程没有提供其他方式的配置。
 
 ## Q&A
 
-V2Ray支持那么多协议为什么要用 WebSocket + TLS + Web？
+V2Ray支持那么多协议为什么要用 WebSocket + TLS + Nginx？
 
 > 你可以想想为什么有了 Shadowsocks(R) 还要用 V2Ray，因为“时代”进步。
 
@@ -43,9 +43,29 @@ V2Ray的底层实现是什么？
    
    > 域名解析可参考 [域名解析详解](https://anandzhang,com/posts/server/2)
 
+## 连接服务器
+
+打开终端（Windows可以使用CMD），使用SSH连接到服务器：
+
+```shell
+ssh root@<ip>
+```
+
+> 请替换为自己服务器ip地址
+
+> 如果ssh端口不是默认的22，就需要使用参数指定。
+>
+> 比如：搬瓦工的ssh端口在创建服务器时会生成
+>
+> ```shell
+> ssh -p <port> root@<ip>
+> ```
+>
+> 替换 `-p` 参数后的port为自己的ssh端口
+
 ## 安装 Nginx
 
-1. 添加Nginx yum库
+1. 添加CentOS 7 Nginx yum库
 
    ```shell
    echo '[nginx]
@@ -55,11 +75,21 @@ V2Ray的底层实现是什么？
    enabled=1' >/etc/yum.repos.d/nginx.repo
    ```
 
-2. 安装最新Nginx
+2. 安装Nginx
 
    ```shell
    yum install -y nginx
    ```
+   
+3. 启动nginx并设置自启
+
+   ```shell
+   systemctl start nginx && systemctl enable nginx
+   ```
+   
+4. （可选）浏览器打开`http://<domain name>` 可看到nginx已正常启动。
+
+   ![nginx](/images/ivy/1/nginx.png)
 
 ## 获取SSL证书
 
@@ -67,25 +97,16 @@ V2Ray的底层实现是什么？
 
 > Cerbot 的 CentOS 7 + Nginx 官方教程：[certbot-nginx-centos7](https://certbot.eff.org/lets-encrypt/centosrhel7-nginx) 
 
-**前提：已安装Nginx并且域名已解析到服务器**
+**前提：已安装Nginx、域名已解析到服务器、防火墙未阻止、有公网ip**
 
-1. SSH 连接到服务器
+```shell
+$ firewall-cmd --list-port
+32121/tcp 80/tcp 443/tcp
+```
 
-   ```shell
-   ssh root@<ip>
-   ```
+会使用80端口区验证
 
-   > 请替换为自己服务器ip地址
-
-   > 如果ssh端口不是默认的22，就需要使用参数指定。
-   >
-   > 比如：搬瓦工的ssh端口在创建服务器时会生成
-   >
-   > ```shell
-   > ssh -p <port> root@<ip>
-   > ```
-   >
-   > 替换 `-p` 参数后的port为自己的ssh端口
+需要在获取证书之前开启nginx，不然后面certbot开启了
 
 2. 安装epel拓展包库
 
@@ -102,7 +123,7 @@ V2Ray的底层实现是什么？
 4. 只获得证书，不自动安装证书
 
    ```shell
-   certbot certonly -n --nginx -d ilovezft.xyz --agree-tos --register-unsafely-without-email 
+   certbot certonly -n --nginx -d ilovezft.xyz --agree-tos --register-unsafely-without-email
    ```
    
    > 你可以选择不使用以上命令而使用以下命令来获得证书，进行交互式操作：
@@ -111,7 +132,9 @@ V2Ray的底层实现是什么？
    > certbot certonly --nginx
    > ```
 
-/etc/letsencrypt/live/
+> 产生的SSL证书文件位置： `/etc/letsencrypt/live/<domain name>` 
+>
+> `<domain name>` 为填的域名。
 
 ## 配置 Nginx
 
@@ -168,6 +191,20 @@ V2Ray的底层实现是什么？
    > `<v2ray port>`  替换为自己的v2ray监听的服务端口，先自己编一个，建议使用大端口（比如：21132、15342等），共一处。
    >
    > `/anand/zhang` 这个请求路经请自己编，比如：`/demo` 、`/images/info` 等等。
+   
+3. 重启nginx
+
+   ```shell
+   systemctl restart nginx
+   ```
+
+4. （可选）浏览器打开 `https://<domain name>` 会发现地址栏有安全提示锁。
+
+   ![nginx1](/images/ivy/1/nginx1.png)
+
+5. （可选）浏览器打开 `https://<domain name><path>` 会发现是502，因为我们的v2ray还没有配置和启动起来。
+
+   ![nginx2](/images/ivy/1/nginx2.png)
 
 ## 安装并配置 V2Ray
 
@@ -225,21 +262,18 @@ V2Ray的底层实现是什么？
    > `<uuid>` 需要一个UUID，你可以使用在线工具生成：[UUID在线生成](https://www.uuidgenerator.net/) 。（比如：e75ee72f-22ec-4a81-a0fd-18a1bb5a8b16）
    >
    > `<path>` 为前面配置nginx时location后的路径，两个必须保持一致。（比如：/anand/zhang）
-
-## 重启 Nginx 和 V2ray
-
-1. 设置两者开机自启
+   
+4. 启动 v2ray 并设置自启
 
    ```shell
-   systemctl enable nginx
-   systemctl enable v2ray
+   systemctl start v2ray && systemctl enable v2ray
    ```
 
-2. 重启两者
+## 检查配置结果
 
-   ```shell
-   systemctl restart nginx; systemctl restart v2ray
-   ```
+浏览器打开 `https://<domain name><path>` 会发现不再是502状态码，而是经过v2ray后返回的一个响应。服务器上的配置已经结束。
+
+![nginx3](/images/ivy/1/nginx3.png)
 
 ## 开始使用
 
