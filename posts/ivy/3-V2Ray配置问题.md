@@ -30,5 +30,5 @@ access_log /root/access.log main;
 error_log /root/error.log info;
 ```
 
-再次尝试使用v2ray，然后查看日志内容，如果出现很多 `Permission Denied` 权限限制，尝试 [关闭SELinux](https://anandzhang.com/posts/os/linux/2) 。
+再次尝试使用v2ray，然后查看日志内容，如果出现很多 `Permission Denied` 权限限制，尝试 [关闭SELinux](https://anandzhang.com/posts/os/linux/4) 。
 

@@ -11,7 +11,7 @@ summary: 使用Vultr创建VPS服务器。
 
 VPS服务器的提供商有很多，文章主要讲解国外提供商Vultr的服务器创建方式。
 
-如果想了解我个人使用国外VPS的经历可以访问 [国外VPS使用经历](https://anandzhang.composts/ivy/2) 。
+如果想了解我个人使用国外VPS的经历可以访问 [国外VPS使用经历](https://anandzhang.com/posts/ivy/2) 。
 
 ## Vultr
 

@@ -43,7 +43,7 @@ V2Ray的底层实现是什么？
    
    建议在国外域名注册商购买，比如GoDaddy、NameCheap等，搭建这个不建议国内。因为这个域名只是拿来配置V2Ray，所以随便输一个域名，后缀选便宜的就好了，一般就 $1。
    
-   > 域名解析可参考 [域名购买和解析](https://anandzhang,com/posts/server/3)
+   > 域名解析可参考 [域名购买和解析](https://anandzhang.com/posts/server/3)
 
 ## 连接服务器
 
