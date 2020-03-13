@@ -10,6 +10,7 @@ app.set('view engine', 'html');
 
 // 静态资源
 app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname, 'public/root')))
 app.use('/images', express.static(path.join(__dirname, 'posts/images')))
 
 // 加载路由
