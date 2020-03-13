@@ -1,13 +1,66 @@
-## ssh 连接没反应
+---
+typora-root-url: ../
+tags: server
+createTime: 2020-3-10
+updateTime: 2020-3-10
+keywords: vultr,ssh
+summary: 在使用Vultr服务器时，SSH连接的问题。
+---
 
-国内外TCP均不可用 防火墙
+# Vultr的SSH问题
 
-https://my.oschina.net/deanzhao/blog/3058904
+## 问题
 
-https://www.linuxprobe.com/chapter-08.html
+最开始使用Vultr经常创建好实例后通过SSH连接服务器一直没有反应。
 
-https://zhuanlan.zhihu.com/p/45920510
+```shell
+$ ssh root@<ip>
+Connection closed by 198.13.59.17 port 22
+```
 
-[https://wangchujiang.com/linux-command/c/iptables.html#%E5%88%97%E5%87%BA%E5%B7%B2%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%A7%84%E5%88%99](https://wangchujiang.com/linux-command/c/iptables.html#列出已设置的规则)
+或者
 
-https://www.jianshu.com/p/70f7efe3a227
+```shell
+$ ssh root@<ip>
+ssh: connect to host 45.76.206.253 port 22: Connection timed out
+```
+
+然后过一会又连接上了，然后一会又不行了。
+
+## IP检测
+
+> [IP检测工具](https://www.toolsdaquan.com/ipcheck/) 
+>
+> `ping` 是ICMP协议，`ssh` 是TCP协议。
+
+- 国内外TCP均不可用，检查是不是防火墙问题
+
+  ```shell
+  firewall-cmd --list-port
+  ```
+
+- 国外可用，国内不可用，可能IP或者端口被封，换一个端口试一下
+
+  ```shell
+  vi /etc/sshd/sshd_config
+  ```
+
+  找到里面的 `Port` 修改后面的值，然后重启sshd
+
+  ```shell
+  systemctl restart sshd
+  ```
+
+## 防火墙设置
+
+- 添加端口，以80端口为例
+
+  ```shell
+  firewall-cmd --permanent --zone=public --add-port=80/tcp
+  ```
+
+- 重启防火墙服务
+
+  ```shell
+  firewall-cmd --reload
+  ```

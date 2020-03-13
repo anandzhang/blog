@@ -45,13 +45,50 @@ VPS服务器的提供商有很多，文章主要讲解国外提供商Vultr的服
 
    根据需要来选择。
 
+6. （建议）添加脚本去开启需要的TCP端口，防止防火墙的原因导致SSH连接问题，顺便也开启web服务需要的端口。
+
+   ![script1](/images/server/5/script1.png)
+
+   ![script2](/images/server/5/script2.png)
+
+   ```shell
+   #!/bin/sh
+   sshdConfig=/etc/ssh/sshd_config
+   # 新的ssh端口
+   newPort=21213
+   # 修改ssh默认的22端口
+   sed -i "/Port 22/d" ${sshdConfig}
+   echo "Port ${newPort}" >>${sshdConfig}
+   # 重启ssh服务
+   systemctl restart sshd
+   # 开启ssh端口
+   firewall-cmd --permanent --zone=public --add-port=${newPort}/tcp
+   # 开启http端口
+   firewall-cmd --permanent --zone=public --add-port=80/tcp
+   # 开启https端口
+   firewall-cmd --permanent --zone=public --add-port=443/tcp
+   # 重启防火墙
+   firewall-cmd --reload
+   ```
+
+   > 这个启动脚本里我修改了SSH默认端口为21213，你可以改为其他值（别忘记改开启的SSH端口），不建议默认端口是因为SSH连接不稳定或者被阻断。
+   >
+   > 如果后面连接不上修改的端口，可能是SELinux模块导致修改端口失败，需要使用Vultr提供的控制台去查看情况（我用的 CentOS 7 没遇到，但是CentOS 8出错）。
+   >
+   > ![console](/images/server/5/console.png)
+   >
+   > 出错查看：[SSH端口修改出错](https://anandzhang.com/posts/server/7) 
+   >
+   
+   ![script3](/images/server/5/script3.png)
+   
 7. 创建
 
    ![deploy](/images/server/5/deploy.png)
 
    ![deploy2](/images/server/5/deploy2.png)
-   
-7. 等待安装结束
+
+8. 等待安装结束
 
    ![installing](/images/server/5/installing.png)
 

@@ -13,9 +13,11 @@ summary: 使用V2Ray配置 WebSocket + TLS + Nginx 实现https伪装。
 
 V2Ray 的配置和概念相对于 Shadowsocks(R) 要复杂，Shadowsocks(R) 简单易用，V2Ray 更复杂但功能强大，所以它更有学习和折腾的意义。
 
-> 该教程是在CentOS 7 64位系统下使用Nginx进行配置。
->
-> 该教程没有提供其他方式的配置。
+**注意：**
+
+- 该教程是在CentOS 7 64位系统下使用Nginx进行配置。
+
+- 该教程没有提供其他方式的配置。
 
 ## Q&A
 
@@ -39,9 +41,9 @@ V2Ray的底层实现是什么？
 
    可以获取免费域名，但是免费的东西能不能好好的用我也不清楚。
    
-   建议在国外域名注册商购买，比如GoDaddy、NameCheap等，因为这个域名只是拿来配置V2Ray，所以随便输一个域名，后缀选便宜的就好了，一般就 $1。
+   建议在国外域名注册商购买，比如GoDaddy、NameCheap等，搭建这个不建议国内。因为这个域名只是拿来配置V2Ray，所以随便输一个域名，后缀选便宜的就好了，一般就 $1。
    
-   > 域名解析可参考 [域名解析详解](https://anandzhang,com/posts/server/2)
+   > 域名解析可参考 [域名购买和解析](https://anandzhang,com/posts/server/3)
 
 ## 连接服务器
 
@@ -97,43 +99,46 @@ ssh root@<ip>
 
 > Cerbot 的 CentOS 7 + Nginx 官方教程：[certbot-nginx-centos7](https://certbot.eff.org/lets-encrypt/centosrhel7-nginx) 
 
-**前提：已安装Nginx、域名已解析到服务器、防火墙未阻止、有公网ip**
+### 前提
 
-```shell
-$ firewall-cmd --list-port
-32121/tcp 80/tcp 443/tcp
-```
+- 已安装并启动 Nginx
+- 域名已解析到服务器
+- 防火墙未阻止http(80)、https(443)端口
 
-会使用80端口区验证
+### 使用 Certbot
 
-需要在获取证书之前开启nginx，不然后面certbot开启了
+> Certbot 会使用80端口进行域名验证
 
-2. 安装epel拓展包库
+1. 安装epel拓展包库
 
    ```shell
    yum install -y epel-release
    ```
 
-3. 安装 Cerbot
+2. 安装 Cerbot
 
    ```shell
    yum install -y certbot python2-certbot-nginx
    ```
 
-4. 只获得证书，不自动安装证书
+3. 只获得证书，不需要自动安装
 
    ```shell
-   certbot certonly -n --nginx -d ilovezft.xyz --agree-tos --register-unsafely-without-email
+   certbot certonly -n --nginx -d <domain name> --agree-tos --register-unsafely-without-email
    ```
-   
-   > 你可以选择不使用以上命令而使用以下命令来获得证书，进行交互式操作：
+
+   > 上面的命令使用了非交互操作，请使用自己的域名替换 `<domain name>` 。
+   >
+   > 你可以不使用上面的命令而使用下面这条命令来进行交互式获取证书：
    >
    > ```shell
    > certbot certonly --nginx
    > ```
+   >
+   > 这样会一步一步提示你填写域名、邮箱等信息。
 
-> 产生的SSL证书文件位置： `/etc/letsencrypt/live/<domain name>` 
->
+获取的SSL证书位置：`/etc/letsencrypt/live/<domain name>` 
+
 > `<domain name>` 为填的域名。
 
 ## 配置 Nginx
@@ -141,10 +146,9 @@ $ firewall-cmd --list-port
 1. 清除 nginx 的默认配置我们自己配
 
    ```shell
-   >/etc/nginx/conf.d/default.conf \
-   && vi /etc/nginx/conf.d/default.conf
+   >/etc/nginx/conf.d/default.conf && vi /etc/nginx/conf.d/default.conf
    ```
-
+   
 2. 填写以下内容
 
    ```nginx
@@ -217,11 +221,10 @@ $ firewall-cmd --list-port
 2. 清除默认配置并编辑配置文件：
 
    ```shell
-   >/etc/v2ray/config.json \
-   && vi /etc/v2ray/config.json
+   >/etc/v2ray/config.json && vi /etc/v2ray/config.json
    ```
-
-3. 填写以下内容：
+   
+3. 填写以下内容（注意JSON格式）：
 
    ```json
    {
@@ -274,6 +277,12 @@ $ firewall-cmd --list-port
 浏览器打开 `https://<domain name><path>` 会发现不再是502状态码，而是经过v2ray后返回的一个响应。服务器上的配置已经结束。
 
 ![nginx3](/images/ivy/1/nginx3.png)
+
+> 如果还是502，说明[v2ray配置有问题](https://anandzhang.com/posts/ivy/3)，修改好配置后重启v2ray：
+>
+> ```shell
+> systemctl restart v2ray
+> ```
 
 ## 开始使用
 
