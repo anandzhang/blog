@@ -6,8 +6,14 @@ const md = require('markdown-it')()
 router.get('/', (req, res) => {
   Post.countDocuments({}, function (err, count) {
     const pagesLimit = 10
-    const current = +req.query.page || 1
+    let current = +req.query.page || 1
     const total = Math.ceil(count / pagesLimit)
+    if (current < 1) {
+      current = 1
+    }
+    if (current > total) {
+      current = total
+    }
     let docQuery = Post.find({}, null, {
       skip: (current - 1) * pagesLimit,
       limit: pagesLimit
