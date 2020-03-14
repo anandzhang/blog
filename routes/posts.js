@@ -4,12 +4,27 @@ const Post = require('../models/post')
 const md = require('markdown-it')()
 
 router.get('/', (req, res) => {
-  Post.find((err, docArr) => {
-    docArr.forEach((value) => {
-      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-      value.createTimeString = time
+  Post.countDocuments({}, function (err, count) {
+    const pagesLimit = 10
+    let current = +req.query.page || 1
+    const total = Math.ceil(count / pagesLimit)
+    if (current < 1) {
+      current = 1
+    }
+    if (current > total) {
+      current = total
+    }
+    let docQuery = Post.find({}, null, {
+      skip: (current - 1) * pagesLimit,
+      limit: pagesLimit
     })
-    res.render('posts', { docArr })
+    docQuery.exec((err, docArr) => {
+      docArr.forEach((value) => {
+        const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
+        value.createTimeString = time
+      })
+      res.render('posts', { docArr, current, total })
+    })
   })
 })
 

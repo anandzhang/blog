@@ -23,4 +23,13 @@
   </li>
   {{/each}}
 </ul>
+<div class="pagination">
+  {{if current>1}}
+  <a href="/posts?page={{current-1}}">&larr; 最近</a>
+  {{/if}}
+  <span>{{current}} / {{total}}</span>
+  {{if current!=total}}
+  <a href="/posts?page={{current+1}}">更早 &rarr;</a>
+  {{/if}}
+</div>
 {{/block}}
