@@ -92,7 +92,7 @@ ul.links li {
 .mobile-bar .btn {
   position: absolute;
   top: 14px;
-  left: 3%;
+  left: 5%;
   width: 24px;
   height: 18px;
   cursor: pointer;
@@ -179,7 +179,7 @@ ul.links li {
   }
   .main .content {
     min-width: auto;
-    margin: 0 3%;
+    margin: 0 5%;
     padding: 46px 0;
   }
 }
