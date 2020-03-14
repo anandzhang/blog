@@ -23,4 +23,11 @@
   </li>
   {{/each}}
 </ul>
+{{if current>1}}
+<a href="/posts?page={{current-1}}">最近</a>
+{{/if}}
+{{current}} / {{total}}
+{{if current!=total}}
+<a href="/posts?page={{current+1}}">更早</a>
+{{/if}}
 {{/block}}
