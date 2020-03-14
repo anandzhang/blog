@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
       current = total
     }
     let docQuery = Post.find({}, null, {
+      sort: { updateTime: -1 },
       skip: (current - 1) * pagesLimit,
       limit: pagesLimit
     })
