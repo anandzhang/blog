@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: windows,ISO
-createTime: 2018-3-2
-updateTime: 2018-3-2
+createTime: 2018-03-02
+updateTime: 2018-03-02
 keywords: win10镜像,windows10官方镜像,下载windows10 ISO镜像
 summary: 通过微软提供的Windows 10安装工具下载最新的win10镜像。
 ---

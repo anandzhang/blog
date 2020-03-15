@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: windows,VMware
-createTime: 2018-2-21
-updateTime: 2018-2-21
+createTime: 2018-02-21
+updateTime: 2018-02-21
 keywords: VMware安装Win7,windows7虚拟机安装
 summary: 使用 VMware 安装 Windows 7 虚拟机。
 ---

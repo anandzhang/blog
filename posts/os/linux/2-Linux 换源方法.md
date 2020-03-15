@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: linux,ubuntu,deepin
-createTime: 2019-5-30
-updateTime: 2019-5-30
+createTime: 2019-05-30
+updateTime: 2019-05-30
 keywords: Linux换源,Ubuntu换源,Linux Ubuntu 换源
 summary: 更换linux系统的软件镜像源，使得包管理器通过更换的国内源去安装应用能有更好的速度。
 ---

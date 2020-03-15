@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: linux
-createTime: 2020-3-13
-updateTime: 2020-3-13
+createTime: 2020-03-13
+updateTime: 2020-03-13
 keywords: selinux,关闭selinux
 summary: 关闭安全增强型 Linux（Security-Enhanced Linux）简称SELinux模块。
 ---

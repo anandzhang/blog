@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: ivy
-createTime: 2020-3-11
-updateTime: 2020-3-11
+createTime: 2020-03-11
+updateTime: 2020-03-11
 keywords: vps,搬瓦工,Vultr
 summary: 记录下自己使用国外VPS服务器的经历。
 ---

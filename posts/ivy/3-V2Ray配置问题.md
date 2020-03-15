@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: ivy
-createTime: 2020-3-10
-updateTime: 2020-3-10
+createTime: 2020-03-10
+updateTime: 2020-03-10
 keywords: v2ray
 summary: V2Ray配置 WebSocket + TLS + Nginx 出现的问题。
 ---

@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: VMware
-createTime: 2018-1-4
-updateTime: 2018-1-4
+createTime: 2018-01-04
+updateTime: 2018-01-04
 keywords: VMware Tool,安装Vmware工具
 summary: 使用 VMware 虚拟机时，经常需要从外面主机复制文件或文件夹到虚拟机内，或者复制粘贴一段文字进虚拟机，安装 Vmware Tool 可以更高效的使用虚拟机来工作。
 ---

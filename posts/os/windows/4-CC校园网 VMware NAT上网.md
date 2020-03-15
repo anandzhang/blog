@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: NSUCC,VMware
-createTime: 2018-1-4
-updateTime: 2019-7-21
+createTime: 2018-01-04
+updateTime: 2019-07-21
 keywords: NSUCC,校园网,校园网虚拟机上网
 summary: 使用校园网客户端上网时，VMware 虚拟机使用 NAT 无法正常上网，一键脚本修改注册表修复上网问题。 
 ---

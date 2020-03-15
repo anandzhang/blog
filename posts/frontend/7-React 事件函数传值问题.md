@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: react,pit
-createTime: 2020-2-28
-updateTime: 2020-2-28
+createTime: 2020-02-28
+updateTime: 2020-02-28
 keywords: react事件函数,react事件函数传值错误
 summary: 在学习React开发的过程中，发现写的案例出现了事件函数传值的问题，自己还是需要继续加油啊。
 ---

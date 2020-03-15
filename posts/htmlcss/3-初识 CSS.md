@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: html
-createTime: 2019-4-22
-updateTime: 2019-4-22
+createTime: 2019-04-22
+updateTime: 2019-04-22
 keywords: html教程,学习css
 summary: 学习HTML的常用标签，进一步学习和掌握HTML。
 ---

@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../../
 tags: macOS,linux,vim
-createTime: 2019-8-5
-updateTime: 2019-8-5
+createTime: 2019-08-05
+updateTime: 2019-08-05
 keywords: vim显示行号,vim高亮
 summary: 经常使用Terminal终端的人来说，vim命令是经常用到的编辑工具，但是很多人也在用vi，两者使用其实也是差别的，通过对vim进行简单配置，使得编辑时带有行号、文本高亮显示。
 ---
