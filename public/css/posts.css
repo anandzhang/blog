@@ -26,3 +26,9 @@
 .pagination>span {
   margin: 0 10px;
 }
+
+@media screen and (max-width: 600px) {
+  .posts-list li .time {
+    position: static;
+  }
+}
