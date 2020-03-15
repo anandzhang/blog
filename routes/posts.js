@@ -20,10 +20,6 @@ router.get('/', (req, res) => {
       limit: pagesLimit
     })
     docQuery.exec((err, docArr) => {
-      docArr.forEach((value) => {
-        const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-        value.createTimeString = time
-      })
       res.render('posts', { docArr, current, total })
     })
   })
