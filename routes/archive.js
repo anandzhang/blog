@@ -24,22 +24,48 @@ router.get('/', (req, res) => {
 })
 
 router.get('/category/:category', (req, res) => {
-  Post.find({ category: { '$regex': `${req.params.category}/*` } }, (err, docArr) => {
-    docArr.forEach((value) => {
-      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-      value.createTimeString = time
+  Post.countDocuments({ category: { '$regex': `${req.params.category}/*` } }, (err, count) => {
+    const pagesLimit = 10
+    let current = +req.query.page || 1
+    const total = Math.ceil(count / pagesLimit)
+    if (current < 1) {
+      current = 1
+    }
+    if (current > total) {
+      current = total
+    }
+    let docQuery = Post.find({}, null, {
+      sort: { updateTime: -1 },
+      skip: (current - 1) * pagesLimit,
+      limit: pagesLimit
     })
-    res.render('posts', { docArr })
+    Post.find({ category: { '$regex': `${req.params.category}/*` } }, null, {
+      sort: { updateTime: -1 }
+    }, (err, docArr) => {
+      res.render('posts', { docArr, current, total })
+    })
   })
 })
 
 router.get('/tag/:tag', (req, res) => {
-  Post.find({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, docArr) => {
-    docArr.forEach((value) => {
-      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-      value.createTimeString = time
+  Post.countDocuments({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, count) => {
+    Post.find({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, docArr) => {
+      const pagesLimit = 10
+      let current = +req.query.page || 1
+      const total = Math.ceil(count / pagesLimit)
+      if (current < 1) {
+        current = 1
+      }
+      if (current > total) {
+        current = total
+      }
+      let docQuery = Post.find({}, null, {
+        sort: { updateTime: -1 },
+        skip: (current - 1) * pagesLimit,
+        limit: pagesLimit
+      })
+      res.render('posts', { docArr, current, total })
     })
-    res.render('posts', { docArr })
   })
 })
 
