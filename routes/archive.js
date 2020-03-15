@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
+const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
   Post.find({}, { _id: 0, category: 1, tags: 1 }, (err, docs) => {
@@ -24,22 +25,20 @@ router.get('/', (req, res) => {
 })
 
 router.get('/category/:category', (req, res) => {
-  Post.find({ category: { '$regex': `${req.params.category}/*` } }, (err, docArr) => {
-    docArr.forEach((value) => {
-      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-      value.createTimeString = time
-    })
-    res.render('posts', { docArr })
+  const pageNumber = +req.query.page
+  const conditions = { category: { '$regex': `${req.params.category}/*` } }
+  const sort = { updateTime: -1 }
+  pagination(pageNumber, conditions, null, sort, (err, data) => {
+    res.render('posts', data)
   })
 })
 
 router.get('/tag/:tag', (req, res) => {
-  Post.find({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, docArr) => {
-    docArr.forEach((value) => {
-      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-      value.createTimeString = time
-    })
-    res.render('posts', { docArr })
+  const pageNumber = +req.query.page
+  const conditions = { tags: { '$elemMatch': { '$eq': req.params.tag } } }
+  const sort = { updateTime: -1 }
+  pagination(pageNumber, conditions, null, sort, (err, data) => {
+    res.render('posts', data)
   })
 })
 
