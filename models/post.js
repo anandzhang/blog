@@ -4,38 +4,18 @@ mongoose.connect('mongodb://localhost/blog', {
   useUnifiedTopology: true
 });
 
+const stringRequired = { type: String, required: true }
 const postSchema = new mongoose.Schema({
-  no: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  keywords: {
-    type: String,
-    required: true
-  },
+  no: stringRequired,
+  title: stringRequired,
+  keywords: stringRequired,
   summary: String,
-  category: {
-    type: String,
-    required: true
-  },
-  requestPath: {
-    type: String,
-    required: true
-  },
+  category: stringRequired,
+  requestPath: stringRequired,
   tags: Array,
-  createTime: {
-    type: Date,
-    required: true
-  },
-  updateTime: Date,
-  content: {
-    type: String,
-    required: true
-  }
+  createTime: stringRequired,
+  updateTime: stringRequired,
+  content: stringRequired
 })
 
 module.exports = mongoose.model('Post', postSchema)

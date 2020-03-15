@@ -2,14 +2,11 @@ const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
 const md = require('markdown-it')()
+const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
-  Post.find((err, docArr) => {
-    docArr.forEach((value) => {
-      const time = value.createTime.getFullYear() + '-' + (value.createTime.getMonth() + 1) + '-' + value.createTime.getDate()
-      value.createTimeString = time
-    })
-    res.render('posts', { docArr })
+  pagination(+req.query.page, {}, null, { updateTime: -1 }, (err, data) => {
+    res.render('posts', data)
   })
 })
 

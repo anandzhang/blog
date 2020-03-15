@@ -12,3 +12,23 @@
   top: 3px;
   right: 30px;
 }
+
+.pagination {
+  margin: 12px 0;
+}
+
+.pagination>a {
+  padding: 6px 12px;
+  border: 1px solid #333;
+  border-radius: 15px;
+}
+
+.pagination>span {
+  margin: 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .posts-list li .time {
+    position: static;
+  }
+}

@@ -5,7 +5,7 @@
 <meta name="description" content="Anand写一写文章，一起学习。">
 {{/block}}
 
-{{block 'title'}}Anand's Blog | 文章{{/block}}
+{{block 'title'}}文章 - Anand's Blog{{/block}}
 
 {{block 'css'}}
 <link rel="stylesheet" href="/public/css/posts.css">
@@ -15,12 +15,24 @@
 
 {{block 'content'}}
 <ul class="posts-list">
-  {{each docArr}}
+  {{each docs}}
   <li>
     <h2><a href="{{$value.requestPath}}">{{$value.title}}</a></h2>
-    <p class="time">{{$value.createTimeString}}</p>
+    <p class="time">
+      {{if $value.createTime!=$value.updateTime}}更新于{{/if}}
+      {{$value.updateTime}}
+    </p>
     <p>{{$value.summary}}</p>
   </li>
   {{/each}}
 </ul>
+<div class="pagination">
+  {{if current>1}}
+  <a href="/posts?page={{current-1}}">&larr; 最近</a>
+  {{/if}}
+  <span>{{current}} / {{total}}</span>
+  {{if current!=total}}
+  <a href="/posts?page={{current+1}}">更早 &rarr;</a>
+  {{/if}}
+</div>
 {{/block}}
