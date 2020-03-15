@@ -2,26 +2,11 @@ const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
 const md = require('markdown-it')()
+const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
-  Post.countDocuments({}, function (err, count) {
-    const pagesLimit = 10
-    let current = +req.query.page || 1
-    const total = Math.ceil(count / pagesLimit)
-    if (current < 1) {
-      current = 1
-    }
-    if (current > total) {
-      current = total
-    }
-    let docQuery = Post.find({}, null, {
-      sort: { updateTime: -1 },
-      skip: (current - 1) * pagesLimit,
-      limit: pagesLimit
-    })
-    docQuery.exec((err, docArr) => {
-      res.render('posts', { docArr, current, total })
-    })
+  pagination(+req.query.page, {}, null, { updateTime: -1 }, (err, data) => {
+    res.render('posts', data)
   })
 })
 

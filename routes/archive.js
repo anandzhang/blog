@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
+const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
   Post.find({}, { _id: 0, category: 1, tags: 1 }, (err, docs) => {
@@ -24,48 +25,20 @@ router.get('/', (req, res) => {
 })
 
 router.get('/category/:category', (req, res) => {
-  Post.countDocuments({ category: { '$regex': `${req.params.category}/*` } }, (err, count) => {
-    const pagesLimit = 10
-    let current = +req.query.page || 1
-    const total = Math.ceil(count / pagesLimit)
-    if (current < 1) {
-      current = 1
-    }
-    if (current > total) {
-      current = total
-    }
-    let docQuery = Post.find({}, null, {
-      sort: { updateTime: -1 },
-      skip: (current - 1) * pagesLimit,
-      limit: pagesLimit
-    })
-    Post.find({ category: { '$regex': `${req.params.category}/*` } }, null, {
-      sort: { updateTime: -1 }
-    }, (err, docArr) => {
-      res.render('posts', { docArr, current, total })
-    })
+  const pageNumber = +req.query.page
+  const conditions = { category: { '$regex': `${req.params.category}/*` } }
+  const sort = { updateTime: -1 }
+  pagination(pageNumber, conditions, null, sort, (err, data) => {
+    res.render('posts', data)
   })
 })
 
 router.get('/tag/:tag', (req, res) => {
-  Post.countDocuments({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, count) => {
-    Post.find({ tags: { '$elemMatch': { '$eq': req.params.tag } } }, (err, docArr) => {
-      const pagesLimit = 10
-      let current = +req.query.page || 1
-      const total = Math.ceil(count / pagesLimit)
-      if (current < 1) {
-        current = 1
-      }
-      if (current > total) {
-        current = total
-      }
-      let docQuery = Post.find({}, null, {
-        sort: { updateTime: -1 },
-        skip: (current - 1) * pagesLimit,
-        limit: pagesLimit
-      })
-      res.render('posts', { docArr, current, total })
-    })
+  const pageNumber = +req.query.page
+  const conditions = { tags: { '$elemMatch': { '$eq': req.params.tag } } }
+  const sort = { updateTime: -1 }
+  pagination(pageNumber, conditions, null, sort, (err, data) => {
+    res.render('posts', data)
   })
 })
 
