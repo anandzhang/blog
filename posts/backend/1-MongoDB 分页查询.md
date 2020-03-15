@@ -7,7 +7,7 @@ keywords: mongodb分页查询,mongoose实现分页功能
 summary: 使用第三方库 mongoose 完成博客文章的分页功能，避免在一页上展示出全部文章。
 ---
 
-# MongoDB 简单实现分页
+# MongoDB 分页查询
 
 ## 简介
 
