@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
-const md = require('markdown-it')()
+const md = require('../utils/markdown')
 const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
