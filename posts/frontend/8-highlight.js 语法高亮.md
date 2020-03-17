@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: markdown,highlight.js
-createTime: 2020-3-16
-updateTime: 2020-3-16
+createTime: 2020-03-16
+updateTime: 2020-03-16
 keywords: 代码语法高亮,html代码块语法高亮,highlight代码块语法高亮显示
 summary: 使用 markdown-it 和 highlight.js 完成对博客 Markdown 文件的代码块语法高亮解析。
 ---
