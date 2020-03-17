@@ -1,0 +1,6 @@
+require('./public/css/reset.css')
+require('./public/css/common.css')
+require('./public/css/index.css')
+require('./public/css/posts.css')
+require('./public/css/archive.css')
+require('./public/css/about.css')
