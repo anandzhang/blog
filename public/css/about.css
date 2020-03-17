@@ -1,12 +1,12 @@
-.main .paragraph {
+.main.about .paragraph {
   margin: 30px auto;
 }
 
-.paragraph p {
+.main.about .paragraph p {
   margin: 6px 0;
 }
 
-.paragraph .right {
+.main.about .paragraph .right {
   float: right;
   margin: 20px;
 }

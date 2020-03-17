@@ -10,11 +10,8 @@
     {{/block}}
     <title>{{block 'title'}}Anand's Blog{{/block}}</title>
     <link rel="icon" type="image/ico" href="/public/img/favicon.ico">
-    <link rel="stylesheet" href="/public/css/reset.css">
-    <link rel="stylesheet" href="/public/css/common.css">
-    {{block 'css'}}
-    <link rel="stylesheet" href="/public/css/index.css">
-    {{/block}}
+    <link rel="stylesheet" href="/public/dist/common.bundle.css">
+    {{block 'css'}}{{/block}}
   </head>
   <body>
     <div class="mobile-bar">
@@ -47,7 +44,7 @@
         {{/block}}
       </div>
     </div>
-    <div class="main">
+    <div class="main {{block 'main-class'}}index{{/block}}">
       <div class="content">
         {{block 'content'}}{{/block}}
         <div style="position: absolute; bottom: 0;">

@@ -3,14 +3,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = {
   mode: 'production',
-  entry: './minify-css.js',
+  entry: {
+    common: './minify/common.js',
+    markdown: './minify/markdown.js'
+  },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].needless.js',
+    path: path.resolve(__dirname, 'public/dist')
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'bundle.css'
+      filename: '[name].bundle.css'
     })
   ],
   module: {
