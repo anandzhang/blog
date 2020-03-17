@@ -16,11 +16,10 @@ function readDir(dirPath) {
         if (path.extname(currentPath) === '.md') {
           let data = getDataFromPath(currentPath)
           fs.readFile(currentPath, (err, file) => {
-            parseYAMLFrontMatter(file.toString())
-            const result = parseYAMLFrontMatter(file.toString())
+            const result = parseYAMLFrontMatter(file.toString(), data.requestPath)
             data = Object.assign(data, result)
             new Post(data).save((err, doc) => {
-              console.log(doc)
+              console.log('ok')
             })
           })
         }
@@ -58,7 +57,7 @@ function getDataFromPath(fullPath) {
  * @param {String} markdownFileString
  * @return {Object}
  */
-function parseYAMLFrontMatter(markdownFileString) {
+function parseYAMLFrontMatter(markdownFileString, requestPath) {
   const regs = {
     // m 多行搜索、s 允许 . 匹配换行符
     frontMatter: /---\s*(.*?)\s*---\s*/ms,
@@ -69,13 +68,18 @@ function parseYAMLFrontMatter(markdownFileString) {
     keywords: /keywords:\s*(.*)/,
     summary: /summary:\s*(.*)/
   }
-  const content = markdownFileString.replace(regs.frontMatter, '')
+  let content = markdownFileString.replace(regs.frontMatter, '')
   const frontMatter = markdownFileString.match(regs.frontMatter)[1]
   const tags = frontMatter.match(regs.tags)[1]
   const createTime = frontMatter.match(regs.createTime)[1]
   const updateTime = frontMatter.match(regs.updateTime)[1]
   const keywords = frontMatter.match(regs.keywords)[1]
   const summary = frontMatter.match(regs.summary)[1]
+  // 给文章内容追加版权声明
+  let copyright = fs.readFileSync('copyright.md').toString()
+  const postURL = `https://anandzhang.com${requestPath}`
+  copyright = copyright.replace('postURL', postURL).replace('postURL', postURL)
+  content += copyright
   return { tags: tags.split(','), createTime, updateTime, keywords, summary, content }
 }
 
