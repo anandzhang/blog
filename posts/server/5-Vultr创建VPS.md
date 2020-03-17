@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: server
-createTime: 2020-3-10
-updateTime: 2020-3-10
+createTime: 2020-03-10
+updateTime: 2020-03-10
 keywords: vultr,vps,v2ray
 summary: 使用Vultr创建VPS服务器。
 ---

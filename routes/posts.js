@@ -16,6 +16,7 @@ router.get('/*/\\d+', (req, res) => {
     if (!doc) return res.status(404).send('404 文章不存在')
     res.render('post-template', {
       title: doc.title,
+      keywords: doc.keywords,
       description: doc.summary,
       content: md.render(doc.content)
     })

@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: server
-createTime: 2020-3-10
-updateTime: 2020-3-10
+createTime: 2020-03-10
+updateTime: 2020-03-10
 keywords: vultr,ssh
 summary: 在使用Vultr服务器时，SSH连接的问题。
 ---

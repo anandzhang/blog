@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: react
-createTime: 2020-2-23
-updateTime: 2020-2-23
+createTime: 2020-02-23
+updateTime: 2020-02-23
 keywords: 解决跨域,react跨域问题
 summary: 通过 React 反向代理proxy快速解决跨域问题。
 ---

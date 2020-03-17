@@ -1,8 +1,8 @@
 ---
 typora-root-url: ../
 tags: api
-createTime: 2020-2-24
-updateTime: 2020-2-24
+createTime: 2020-02-24
+updateTime: 2020-02-24
 keywords: 豆瓣电影api
 summary: 面向开发者的豆瓣API很早就下线了，现在的v2版需要有apikey，而且豆瓣不再向个人用户开放，为了学习开发，没有数据真的很难。
 ---
