@@ -1,18 +1,18 @@
-.main .sort.category {
+.main.archive .sort.category {
   padding-left: 30px;
   list-style-type: circle;
 }
 
-.main .sort.category li {
+.main.archive .sort.category li {
   margin: 8px 0;
   text-decoration: underline;
 }
 
-.main .sort.tag {
+.main.archive .sort.tag {
   padding-left: 20px;
 }
 
-.main .sort.tag li {
+.main.archive .sort.tag li {
   display: inline-block;
   margin: 5px;
   padding: 6px 12px;
