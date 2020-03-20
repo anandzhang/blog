@@ -4,7 +4,8 @@
 const fs = require('fs')
 const path = require('path')
 const Post = require('./models/post')
-const postsDir = "posts/";
+const postsDir = "posts/"
+const md = require('./utils/markdown')
 
 function readDir(dirPath) {
   fs.readdir(dirPath, (err, files) => {
@@ -84,6 +85,7 @@ function parseYAMLFrontMatter(markdownFileString, requestPath) {
     content += '\n'
   }
   content += copyright
+  content = md.render(content)
   return { tags: tags.split(','), createTime, updateTime, keywords, summary, content }
 }
 
