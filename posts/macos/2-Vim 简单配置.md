@@ -35,4 +35,4 @@ summary: 经常使用Terminal终端的人来说，vim命令是经常用到的编
 
 ## 效果图
 
-![effect](/images/os/tips/2/effect.png)
+![effect](/images/macos/2/effect.png)

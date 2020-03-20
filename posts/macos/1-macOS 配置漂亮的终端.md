@@ -13,7 +13,7 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
 
 ## 效果图
 
-![effect-terminal](/images/os/mac/1/effect.png)
+![effect-terminal](/images/macos/1/effect.png)
 
 ## iTerm 终端配置
 
@@ -21,7 +21,7 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
 
 [点击下载](https://iterm2.com/downloads/stable/latest) 后，双击.zip下载文件解压后是一个可直接运行的 iterm 应用程序，可以把它拖到应用程序里，以后便可以通过启动器来运行。
 
-![step1](/images/os/mac/1/step1.png)
+![step1](/images/macos/1/step1.png)
 
 ### 配置准备
 
@@ -59,29 +59,29 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
 
 1. 打开 iTerm 首选项
 
-   ![step2](/images/os/mac/1/step2.png)
+   ![step2](/images/macos/1/step2.png)
 
 2. 引入解压主题文件中 `/schemes/Solarized Dark Higher Contrast.itermcolors` 
 
-   ![step3](/images/os/mac/1/step3.png)
+   ![step3](/images/macos/1/step3.png)
 
-   ![step4](/images/os/mac/1/step4.png)
+   ![step4](/images/macos/1/step4.png)
 
 3. 引入完成后 再选择引入的它：Solarized Dark Higher Contrast
 
-   ![step5](/images/os/mac/1/step5.png)
+   ![step5](/images/macos/1/step5.png)
 
 ### 安装 oh-my-zsh 来升华终端
 
 1. 下载安装
 
    ```shell
-   $ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
+   $ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
    ```
 
    > 如果是 Mac OS Sierra 可能会没装git，如果提示安装，安装下就ok。macOS 一般都装了 git。
 
-   ![step6](/images/os/mac/1/step6.png)
+   ![step6](/images/macos/1/step6.png)
 
 2. 编辑 zsh 配置，修改其中的 ZSH_THEME="agnoster"
 
@@ -89,27 +89,27 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
    $ vim ~/.zshrc
    ```
 
-   ![step7](/images/os/mac/1/step7.png)
+   ![step7](/images/macos/1/step7.png)
 
 3. 这个时候 agnoster 主题会有乱码，安装字体解决
 
-   ![step8](/images/os/mac/1/step8.png)
+   ![step8](/images/macos/1/step8.png)
 
 ### 安装字体来解决乱码
 
 1. 安装 [下载 Meslo 字体](https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf)
 
-   ![step9](/images/os/mac/1/step9.png)
+   ![step9](/images/macos/1/step9.png)
 
 2. 双击下载的.ttf文件，添加到字体库
 
 3. 设置 iTerm 字体为 Meslo
 
-   ![step10](/images/os/mac/1/step10.png)
+   ![step10](/images/macos/1/step10.png)
 
 4. 重启下 iTerm
 
-   ![step11](/images/os/mac/1/step11.png)
+   ![step11](/images/macos/1/step11.png)
 
 ### 隐藏过长的路径
 
@@ -125,11 +125,11 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
 
    修改前：
 
-   ![more1](/images/os/mac/1/more1.png)
+   ![more1](/images/macos/1/more1.png)
 
    修改后：
 
-   ![more2](/images/os/mac/1/more2.png)
+   ![more2](/images/macos/1/more2.png)
 
    然后更新配置：
 
@@ -139,7 +139,7 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
 
    效果：需要当前位置 `pwd` 一下就好
 
-   ![more3](/images/os/mac/1/more3.png)
+   ![more3](/images/macos/1/more3.png)
 
 2. **隐藏用户和主机名**
 
@@ -151,7 +151,7 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
 
       任意位置添加 `DEFAULT_USER=$USER` 
 
-      ![more4](/images/os/mac/1/more4.png)
+      ![more4](/images/macos/1/more4.png)
 
    2. 刷新配置
 
@@ -159,14 +159,14 @@ summary: 使用 macOS 开发当然也需要一个漂亮优雅的终端。通过 
       source ~/.zshrc
       ```
 
-      ![more5](/images/os/mac/1/more5.png)
+      ![more5](/images/macos/1/more5.png)
 
 ### 完成结果
 
-![result](/images/os/mac/1/result.png)
+![result](/images/macos/1/result.png)
 
 ## Vim 简单配置
 
-![effect](/images/os/mac/1/effect.png)
+![effect](/images/macos/1/effect.png)
 
-请看 [vim 简单配置](/posts/os/tips/2)
+请看 [vim 简单配置](https://anandzhang.com/posts/macos/2)

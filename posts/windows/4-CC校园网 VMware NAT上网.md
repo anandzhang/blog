@@ -25,11 +25,11 @@ summary: 使用校园网客户端上网时，VMware 虚拟机使用 NAT 无法�
 
 1. Win + R 快捷键打开快速启动工具，输入 `regedit` 进入注册表编辑器
 
-   ![regedit](/images/os/windows/4/regedit.jpg)
+   ![regedit](/images/windows/4/regedit.jpg)
 
 2. 打开 `\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services` 找到 `VMware NAT Service` 
 
-   ![modify](/images/os/windows/4/modify.png)
+   ![modify](/images/windows/4/modify.png)
 
 3. 双击 `Display name` 修改原来的名字，比如：修改为 `MMware NAT Service` 
 
@@ -37,6 +37,6 @@ summary: 使用校园网客户端上网时，VMware 虚拟机使用 NAT 无法�
 
 5. Win + R 输入 `services.msc` 确保修改的 VMware NAT Service 处于运行状态
 
-   ![services](/images/os/windows/4/services.png)
+   ![services](/images/windows/4/services.png)
 
 6. 连接CC，打开虚拟机，OK
