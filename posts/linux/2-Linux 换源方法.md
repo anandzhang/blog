@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: linux,ubuntu,deepin
 createTime: 2019-05-30
 updateTime: 2019-05-30
@@ -18,13 +18,13 @@ summary: 更换linux系统的软件镜像源，使得包管理器通过更换的
 
 2. 根据选择自己的Linux发行版，点帮助help就有详细了，复制到sources.list，更新下源就好了。
 
-   ![mirror](/images/os/linux/2/mirror.png)
+   ![mirror](/images/linux/2/mirror.png)
 
 ## Ubuntu 换源方法
 
 > Xubunut、Kubuntu都是ubuntu发行版，只是桌面环境不同，换源也是一样。
 
-> 如果你需要ubuntu cn国区源，请看[Ubuntu cn国内源](/posts/os/linux/3) 
+> 如果你需要ubuntu cn国区源，请看 [Ubuntu cn国内源](https://anandzhang.com/posts/linux/3) 
 
 1. 备份原来的 sorces 文件
 
@@ -130,9 +130,9 @@ summary: 更换linux系统的软件镜像源，使得包管理器通过更换的
 >
 > 如果出现lock报错，删除lock文件就好了
 
-![lock1](/images/os/linux/2/lock1.png)
+![lock1](/images/linux/2/lock1.png)
 
-![lock2](/images/os/linux/2/lock2.png)
+![lock2](/images/linux/2/lock2.png)
 
 删除上面提示的 lock 文件：
 
@@ -140,7 +140,7 @@ summary: 更换linux系统的软件镜像源，使得包管理器通过更换的
 sudo rm -f /var/lib/apt/lists/lock
 ```
 
-![lock3](/images/os/linux/2/lock3.png)
+![lock3](/images/linux/2/lock3.png)
 
 再更新源
 

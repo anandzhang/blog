@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: macOS,linux,vim
 createTime: 2019-08-05
 updateTime: 2019-08-05
@@ -35,4 +35,4 @@ summary: 经常使用Terminal终端的人来说，vim命令是经常用到的编
 
 ## 效果图
 
-![effect](/images/os/tips/2/effect.png)
+![effect](/images/macos/2/effect.png)

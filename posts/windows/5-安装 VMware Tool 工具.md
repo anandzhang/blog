@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: VMware
 createTime: 2018-01-04
 updateTime: 2018-01-04
@@ -13,7 +13,7 @@ summary: 使用 VMware 虚拟机时，经常需要从外面主机复制文件或
 
 ## 准备工作
 
-![vmwaretool](/images/os/tips/1/vmwaretool.png)
+![vmwaretool](/images/windows/5/vmwaretool.png)
 
 ## Windows
 
@@ -23,7 +23,7 @@ summary: 使用 VMware 虚拟机时，经常需要从外面主机复制文件或
 
 1. 打开光盘
 
-   ![linux](/images/os/tips/1/linux.png)
+   ![linux](/images/windows/5/linux.png)
 
 2. 空白处右键，在该位置打开终端
 

@@ -35,4 +35,4 @@ summary: 修改SSH端口没有生效？。
    journalctl -xe
    ```
 
-5. 如果是SELinux阻止，请[关闭SELinux](https://anandzhang.com/posts/os/linux/4) 
+5. 如果是SELinux阻止，请[关闭SELinux](https://anandzhang.com/posts/linux/4) 
