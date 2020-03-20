@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
-const md = require('../utils/markdown')
 const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
@@ -18,7 +17,7 @@ router.get('/*/\\d+', (req, res) => {
       title: doc.title,
       keywords: doc.keywords,
       description: doc.summary,
-      content: md.render(doc.content)
+      content: doc.content
     })
   })
 })
