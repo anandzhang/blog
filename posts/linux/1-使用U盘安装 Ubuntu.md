@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: linux,ubuntu
 createTime: 2020-01-20
 updateTime: 2020-01-20
@@ -37,7 +37,7 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
 选择插入的U盘设备，然后点击选择，选择下载的 Ubuntu IOS 镜像文件。
 
-![refus](/images/os/linux/1/refus.png)
+![refus](/images/linux/1/refus.png)
 
 点击开始，然后OK或者确定。等待制作完成后点击关闭。
 
@@ -51,7 +51,7 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
 通过选择选择磁盘和磁盘上的分区进行删除或者压缩卷，我完成的磁盘情况如下：
 
-![image-20200126135622701](/images/os/linux/1/diskmgmt.png)
+![image-20200126135622701](/images/linux/1/diskmgmt.png)
 
 ## 启动制作的 Ubuntu启动器
 
@@ -59,7 +59,7 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
 > 我的笔记本是 Lenovo 小新潮7000，方法是按下开机键，然后按住 F12。
 
-![image-20200130174027772](/images/os/linux/1/bios.png)
+![image-20200130174027772](/images/linux/1/bios.png)
 
 第一个为windows启动管理器，第二个为我们制作的ubuntu启动器，选择第二个并回车。
 
@@ -69,7 +69,7 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
 1. 根据需要选择自己使用的语言
 
-   ![install1](/images/os/linux/1/install1.JPG)
+   ![install1](/images/linux/1/install1.JPG)
 
 2. 设置键盘布局：默认就行
 
@@ -79,11 +79,11 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
    > 莫有什么特殊要求就选择 正常安装 就好。
 
-   ![install2](/images/os/linux/1/install2.JPG)
+   ![install2](/images/linux/1/install2.JPG)
 
 5. 安装类型：选择 其他选项
 
-   ![install3](/images/os/linux/1/install3.JPG)
+   ![install3](/images/linux/1/install3.JPG)
 
 6. 双击刚才留出的空闲磁盘区
 
@@ -91,17 +91,17 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
    >
    > 逻辑分区：挂载点 /home等，除 / 以外 。可以选择使用不同的分区挂载。
 
-   ![install4](/images/os/linux/1/install4.JPG)
+   ![install4](/images/linux/1/install4.JPG)
 
-   ![install5](/images/os/linux/1/install5.JPG)
+   ![install5](/images/linux/1/install5.JPG)
 
-   ![install6](/images/os/linux/1/install6.JPG)
+   ![install6](/images/linux/1/install6.JPG)
 
-   ![install7](/images/os/linux/1/install7.JPG)
+   ![install7](/images/linux/1/install7.JPG)
 
 7. 选择地区：点击祖国母亲的位置
 
-   ![install8](/images/os/linux/1/install8.JPG)
+   ![install8](/images/linux/1/install8.JPG)
 
 8. 设置用户名等
 
@@ -113,15 +113,15 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
    >
    > 也就是：anand@lenovo 前面是设置的用户名，后面是设置的计算机名。
 
-   ![install9](/images/os/linux/1/install9.JPG)
+   ![install9](/images/linux/1/install9.JPG)
 
 9. 等待安装
 
-   ![ubuntu](/images/os/linux/1/ubuntu.JPG)
+   ![ubuntu](/images/linux/1/ubuntu.JPG)
 
 ## 重启后的启动菜单
 
-![bootmeau](/images/os/linux/1/bootmeau.JPG)
+![bootmeau](/images/linux/1/bootmeau.JPG)
 
 启动菜单第一个为ubuntu，通过ubuntu的启动菜单可以选择进入ubuntu还是windows。
 

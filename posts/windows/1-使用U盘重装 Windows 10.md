@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: windows
 createTime: 2018-03-02
 updateTime: 2019-12-02

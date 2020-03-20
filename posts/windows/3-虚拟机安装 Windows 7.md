@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: windows,VMware
 createTime: 2018-02-21
 updateTime: 2018-02-21

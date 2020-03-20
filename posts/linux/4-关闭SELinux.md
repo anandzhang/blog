@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: linux
 createTime: 2020-03-13
 updateTime: 2020-03-13

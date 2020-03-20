@@ -1,5 +1,5 @@
 ---
-typora-root-url: ../../
+typora-root-url: ../
 tags: linux,ubuntu,deepin
 createTime: 2019-05-30
 updateTime: 2019-05-30
