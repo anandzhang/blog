@@ -15,7 +15,7 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
 > 参考：
 >
-> https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows
+> [https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows)
 
 ## 准备工作
 
@@ -145,5 +145,5 @@ summary: 使用U盘安装 Ubuntu 系统，实现 Windows 和 Linux 双系统。�
 
 > 这样解决了我出现的问题，我的显卡是英伟达Nvida，如果你无法解决，可以搜索：ubuntu 安装显卡驱动
 >
-> 参考：https://zhuanlan.zhihu.com/p/59618999
+> 参考：[https://zhuanlan.zhihu.com/p/59618999](https://zhuanlan.zhihu.com/p/59618999)
 

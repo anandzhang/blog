@@ -24,7 +24,7 @@ summary: 更换linux系统的软件镜像源，使得包管理器通过更换的
 
 > Xubunut、Kubuntu都是ubuntu发行版，只是桌面环境不同，换源也是一样。
 
-> 如果你需要ubuntu cn国区源，请看[Ubuntu cn国内源](https://anandzhang.com/posts/linux/3) 
+> 如果你需要ubuntu cn国区源，请看 [Ubuntu cn国内源](https://anandzhang.com/posts/linux/3) 
 
 1. 备份原来的 sorces 文件
 
