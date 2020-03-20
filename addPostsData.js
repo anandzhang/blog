@@ -79,6 +79,10 @@ function parseYAMLFrontMatter(markdownFileString, requestPath) {
   let copyright = fs.readFileSync('copyright.md').toString()
   const postURL = `https://anandzhang.com${requestPath}`
   copyright = copyright.replace('postURL', postURL).replace('postURL', postURL)
+  // 添加文章末尾空行 满足分割线的语法
+  if (content.slice(-1) != '\n') {
+    content += '\n'
+  }
   content += copyright
   return { tags: tags.split(','), createTime, updateTime, keywords, summary, content }
 }
