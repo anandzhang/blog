@@ -26,19 +26,21 @@ router.get('/', (req, res) => {
 
 router.get('/category/:category', (req, res) => {
   const pageNumber = +req.query.page
-  const conditions = { category: { '$regex': `${req.params.category}/*` } }
+  const { category } = req.params
+  const conditions = { category: { '$regex': `${category}/*` } }
   const sort = { updateTime: -1 }
   pagination(pageNumber, conditions, null, sort, (err, data) => {
-    res.render('posts', data)
+    res.render('posts', { category, ...data })
   })
 })
 
 router.get('/tag/:tag', (req, res) => {
   const pageNumber = +req.query.page
-  const conditions = { tags: { '$elemMatch': { '$eq': req.params.tag } } }
+  const { tag } = req.params
+  const conditions = { tags: { '$elemMatch': { '$eq': tag } } }
   const sort = { updateTime: -1 }
   pagination(pageNumber, conditions, null, sort, (err, data) => {
-    res.render('posts', data)
+    res.render('posts', { tag, ...data })
   })
 })
 
