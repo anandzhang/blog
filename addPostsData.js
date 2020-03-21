@@ -1,64 +1,60 @@
-/**
- * @file 获得文章标题等数据存入数据库
- */
 const fs = require('fs')
 const path = require('path')
+const mongoose = require('mongoose')
 const Post = require('./models/post')
-const postsDir = "posts/"
 const md = require('./utils/markdown')
+const postsDirectory = './posts'
+const skipDirectories = ['images']
 
-function readDir(dirPath) {
-  fs.readdir(dirPath, (err, files) => {
-    if (err) return console.log(err)
-    files.forEach((value) => {
-      const currentPath = path.join(dirPath, value)
-      if (isFile(currentPath)) {
-        // 判断是否为 Markdown 文件
-        if (path.extname(currentPath) === '.md') {
-          let data = getDataFromPath(currentPath)
-          fs.readFile(currentPath, (err, file) => {
-            const result = parseYAMLFrontMatter(file.toString(), data.requestPath)
-            data = Object.assign(data, result)
-            new Post(data).save((err, doc) => {
-              console.log('ok')
-            })
-          })
-        }
-      } else {
-        readDir(currentPath)
-      }
-    })
-  })
+const traverseDirectory = async (directory, skipDirectories) => {
+  const dir = await fs.promises.opendir(directory)
+  for await (const dirent of dir) {
+    const { name } = dirent
+    if (dirent.isFile() && path.extname(name) === '.md') {
+      const doc = parseMarkdown(name, directory)
+      new Post(doc).save((err, doc) => {
+        if (err) throw new Error(err)
+        console.log('ok')
+      })
+    } else if (skipDirectories.indexOf(name)) {
+      traverseDirectory(path.join(directory, name), skipDirectories)
+    }
+  }
 }
 
-function isFile(path) {
-  const stat = fs.statSync(path)
-  return stat.isFile()
+
+const parseMarkdown = (name, directory) => {
+  const filePath = path.join(directory, name)
+  const { no, title } = parseMDFilename(name)
+  const category = path.basename(directory)
+  const requestPath = path.resolve('/', directory, no)
+  const mdData = parseMDContent(filePath)
+  return { no, title, category, requestPath, ...mdData }
 }
 
-/**
- * 从路径中获取文章标题、目录等
- *
- * @param {String} fullPath 从文章所在文件夹根目录起
- * @return {Object}
- */
-function getDataFromPath(fullPath) {
-  const category = path.dirname(fullPath).replace(postsDir, '')
-  const nameSplit = path.basename(fullPath).split('-')
-  const no = nameSplit.shift()
-  const requestPath = path.join('/', path.dirname(fullPath), no)
-  let title = nameSplit.shift()
-  title = title.replace(path.extname(title), '')
-  return { no, title, category, requestPath }
+const parseMDFilename = filename => {
+  const extname = path.extname(filename)
+  filename = filename.replace(extname, '').split('-')
+  const no = filename.shift()
+  const title = filename.shift()
+  return { no, title }
 }
 
-/**
- * 从 Markdown 文件的 YAML前提 中提取数据
- *
- * @param {String} markdownFileString
- * @return {Object}
- */
-function parseYAMLFrontMatter(markdownFileString, requestPath) {
+const parseMDContent = filePath => {
+  const fileString = fs.readFileSync(filePath).toString()
+  let { content, ...mdData } = parseMDYAMLFrontMatter(fileString)
+  // 追加版权声明
+  let copyright = fs.readFileSync('copyright.md').toString()
+  const postURL = `https://anandzhang.com/${filePath.split('-').shift()}`
+  copyright = copyright.replace('postURL', postURL).replace('postURL', postURL)
+  // 文章末尾空行
+  if (content.slice(-1) != '\n') content += '\n'
+  content += copyright
+  mdData.content = md.render(content)
+  return mdData
+}
+
+const parseMDYAMLFrontMatter = mdString => {
   const regs = {
     // m 多行搜索、s 允许 . 匹配换行符
     frontMatter: /---\s*(.*?)\s*---\s*/ms,
@@ -69,25 +65,17 @@ function parseYAMLFrontMatter(markdownFileString, requestPath) {
     keywords: /keywords:\s*(.*)/,
     summary: /summary:\s*(.*)/
   }
-  let content = markdownFileString.replace(regs.frontMatter, '')
-  const frontMatter = markdownFileString.match(regs.frontMatter)[1]
-  const tags = frontMatter.match(regs.tags)[1]
+  const frontMatter = mdString.match(regs.frontMatter)[1]
+  const tags = frontMatter.match(regs.tags)[1].split(',')
   const createTime = frontMatter.match(regs.createTime)[1]
   const updateTime = frontMatter.match(regs.updateTime)[1]
   const keywords = frontMatter.match(regs.keywords)[1]
   const summary = frontMatter.match(regs.summary)[1]
-  // 给文章内容追加版权声明
-  let copyright = fs.readFileSync('copyright.md').toString()
-  const postURL = `https://anandzhang.com${requestPath}`
-  copyright = copyright.replace('postURL', postURL).replace('postURL', postURL)
-  // 添加文章末尾空行 满足分割线的语法
-  if (content.slice(-1) != '\n') {
-    content += '\n'
-  }
-  content += copyright
-  content = md.render(content)
-  return { tags: tags.split(','), createTime, updateTime, keywords, summary, content }
+  const content = mdString.replace(regs.frontMatter, '')
+  return { tags, createTime, updateTime, keywords, summary, content }
 }
 
-Post.deleteMany({}, err => console.log(err))
-readDir(postsDir)
+Post.deleteMany(() => {
+  console.log('Deleted successfully')
+  traverseDirectory(postsDirectory, skipDirectories)
+})
