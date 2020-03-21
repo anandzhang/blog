@@ -18,6 +18,9 @@
 {{block 'main-class'}}{{/block}}
 
 {{block 'content'}}
+{{if !(category || tag)}}
+<h1 style="font-size: 0;">文章 - Anand's Blog</h1>
+{{/if}}
 <ul class="posts-list">
   {{each docs}}
   <li>
