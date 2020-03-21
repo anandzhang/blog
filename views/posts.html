@@ -5,14 +5,22 @@
 <meta name="description" content="Anand写一写文章，一起学习。">
 {{/block}}
 
+{{if category}}
+{{block 'title'}}{{category}}目录 - 归档 - Anand's Blog{{/block}}
+{{else if tag}}
+{{block 'title'}}{{tag}}标签 - 归档 - Anand's Blog{{/block}}
+{{else}}
 {{block 'title'}}文章 - Anand's Blog{{/block}}
-
+{{/if}}
 
 {{block 'links'}}{{/block}}
 
 {{block 'main-class'}}{{/block}}
 
 {{block 'content'}}
+{{if !(category || tag)}}
+<h1 style="font-size: 0;">文章 - Anand's Blog</h1>
+{{/if}}
 <ul class="posts-list">
   {{each docs}}
   <li>
