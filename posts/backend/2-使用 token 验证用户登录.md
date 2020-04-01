@@ -2,7 +2,7 @@
 typora-root-url: ../
 tags: backend
 createTime: 2020-03-26
-updateTime: 2020-03-26
+updateTime: 2020-04-01
 keywords: 用户登录验证,token用户登录验证,express设置token验证
 summary: 前后端详解如何使用token来做用户登录验证。文章用了bcrypt对用户密码加密，jsonwebtoken颁发token等。
 ---
@@ -368,8 +368,13 @@ const auth = async (req, res, next) => {
   const { cookie } = req.headers
   // 没有任何 Cookie?
   if (cookie) {
-    // 使用一个简单的正则拿到 token
-    const matchResult = cookie.match(/user=(.*?);/)
+    // 使用一个简单的正则拿到token
+    let matchReg = /user=(.*?);/
+    // 只有一个cookie就贪婪匹配
+    if (cookie.split(';').length === 1) {
+      matchReg = /user=(.*)/
+    }
+    const matchResult = cookie.match(matchReg)
     // 没有token？
     if (matchResult) {
       const token = matchResult[1]
