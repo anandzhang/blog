@@ -1,6 +1,6 @@
 ---
 typora-root-url: ../
-tags: backend
+tags: react
 createTime: 2020-04-03
 updateTime: 2020-04-03
 keywords: react父组件修改子组件状态,react父组件调用子组件方法,react ref怎么用
