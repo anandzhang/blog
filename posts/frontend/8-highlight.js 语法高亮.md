@@ -70,7 +70,7 @@ app.listen(port, () => {
 
 `highlight.js` 中提供了很多的样式，你可以在 `nodejs` 的 `node_modules` 中拿出来使用。
 
-![style](/images/frontend/style.png)
+![style](/images/frontend/8/style.png)
 
 `/node_modules/highlight.js/styles` 中的 `css` 文件复制出来用就好了。
 
@@ -159,7 +159,7 @@ app.listen(port, () => {
 
 ### 效果
 
-![result](/images/frontend/result.png)
+![result](/images/frontend/8/result.png)
 
 ## 补充
 
