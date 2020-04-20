@@ -15,7 +15,7 @@ summary: ESLint 怎么使用？如何在 git commit 时强制通过 ESLint 代�
 
 最头大的一次是使用 `git commit` 提交代码时出现了一些报错，当时很小白的我真的很蒙蔽，感觉有点莫名奇妙，为什么那么多问题，然后一个一个去修改。而且有一些还不知道怎么修改，真的觉得谁没事弄个这个，很想吐槽。
 
-过了这么长一段时间，我竟然主动往自己的项目中配置它，这就是生活吧，不过现在我会认为 `ESLint` 是一个非常棒的工具。
+过了这么长一段时间，我竟然主动往自己的项目中配置它，这就是生活吧，不过现在我会认为 `ESLint` 是一个非常棒的工具，但是，当你在一个写好的项目里添加 `ESLint` 时，还是可以让你崩溃，你会收获一堆 `error` 。
 
 简单的说，`ESLint` 是一套 `javascript` 代码检测规则，避免代码错误，也利于统一团队代码风格。
 
@@ -73,7 +73,15 @@ npx eslint --init
 // 现在就安装配置的需要的 eslint 插件？一般选Y
 ```
 
-我自己常用的 `React` 环境 `Standardjs` 代码规范配置，`.eslintrc.js`：
+我自己常用的 `React` 环境 `Standardjs` 代码规范配置
+
+依赖：
+
+```shell
+npm i eslint babel-eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-standard -D
+```
+
+`.eslintrc.js`：
 
 ```javascript
 module.exports = {
@@ -89,6 +97,7 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -104,6 +113,9 @@ module.exports = {
       version: 'detect'
     }
   },
+  ignorePatterns: [
+    'src/serviceWorker.js'
+  ],
   rules: {}
 }
 ```
@@ -137,42 +149,38 @@ module.exports = {
 src/serviceWorker.js
 ```
 
+### cli
+
+```shell
+npx eslint --ignore-pattern <ignore file/dir> <file/dir> 
+```
+
 ### 4. 使用
 
 ```shell
 npx eslint <file>
 ```
 
-`eslint` 后根需要检查的文件就可以了，常用的泛匹配：
+`eslint --fix` 对出现的问题尽可能多修复，剩余的问题会进行输出。
+
+`eslint` 后根需要检查的文件就可以了，常用的泛匹配（glob 模式）：
 
 ```
-*.js 所有js后缀文件
-**/*.js 当前文件夹所有js文件以及子文件夹里的js文件
+*.js 所有js后缀文件，不会匹配子目录
+**/*.js 子目录里的js文件
 ```
 
-## 补充1：没有指定React版本？
+```
+npx eslint *.js
+```
 
-运行 `eslint` 后如果存在没有指定 `React` 版本的警告：
+想要匹配所有的 `js` 或 `jsx` 文件，可以使用 `--ext` 参数，比如：
 
 ```shell
-Warning: React version not specified in eslint-plugin-react settings. 
+npx eslint --ext .js,.jsx <dir>
 ```
 
-在配置文件中添加 `settings` 字段指定 `React` 版本，`detect` 为跟随项目安装的 `React` 版本。
-
-```javascript
-module.exports = {
-  // 省略其他字段
-  settings: {
-    react: {
-      version: 'detect'
-    }
-  },
-  rules: {}
-}
-```
-
-## 补充2：git hook
+## 使用 git hook
 
 绝大多数项目都使用了 `git` 进行团队开发协作，所以在代码提交时要求对代码错误和规范进行检测和修复是必要的。
 
@@ -212,7 +220,7 @@ npm i husky -D
      },
      "husky": {
        "hooks": {
-         "pre-commit": "eslint --fix *.js && git add ."
+         "pre-commit": "eslint --fix --ext .js,.jsx . && git add ."
        }
      }
    }
@@ -226,13 +234,72 @@ npm i husky -D
    module.exports = {
      'hooks': {
        'pre-commit': tasks([
-         'eslint --fix *.js',
+         'eslint --fix --ext .js,.jsx .',
          'git add .'
        ])
      }
    }
    ```
 
-上面使用的 `pre-commit` ，是在 `git commit` 操作执行之前先执行 `husky` 的任务，`eslint --fix *.js && git add .` 使用 `&&` 连接了两个命令，第一个 `eslint` 修复代码错误命令仍有报错时就不会执行后面的 `git add` 。
+#### 3. 直接提交
+
+有时候往一个写好了的项目中加 `ESLint` ，你会有很多的 `error` 需要处理，但是想先提交代码，后面再对代码问题进行修复，这时你可以添加 `--no-verify` 先提交代码。
+
+```
+git commit -m "添加ESLint工具" --no-verify
+```
+
+SO：
+
+上面使用的 `pre-commit` ，是在 `git commit` 操作执行之前先执行 `husky` 的任务，使用 `&&` 连接了两个命令，第一个 `eslint` 修复代码问题后仍有报错时就不会执行后面的 `git add` 。
 
 其他的HOOK： [git hook](https://git-scm.com/docs/githooks) 。
+
+## 补充1：没有指定React版本？
+
+运行 `eslint` 后如果存在没有指定 `React` 版本的警告：
+
+```shell
+Warning: React version not specified in eslint-plugin-react settings. 
+```
+
+在配置文件中添加 `settings` 字段指定 `React` 版本，`detect` 为跟随项目安装的 `React` 版本。
+
+```javascript
+module.exports = {
+  // 省略其他字段
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
+  rules: {}
+}
+```
+
+## 补充2：React 有些语法特性无法解析
+
+```
+class App extends Component {
+  state = {}
+  // 省略其他
+}
+```
+
+出现错误：
+
+```
+error  Parsing error: Unexpected token =
+```
+
+需要使用到 `babel-eslint` 解析器：
+
+```
+npm i babel-eslint -D
+```
+
+在 `.eslintrc.*` 配置文件中添加 `parser` 字段：
+
+```
+parser: 'babel-eslint'
+```
