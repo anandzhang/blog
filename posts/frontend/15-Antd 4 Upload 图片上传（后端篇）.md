@@ -130,6 +130,42 @@ app.use((err, req, res, next) => {
 })
 ```
 
+### 补充：删除文件
+
+添加一个删除上传的文件的API：
+
+```javascript
+const fs = require('fs')
+
+// 客户端请求体的JSON
+app.use(express.json())
+
+// delete删除请求
+app.delete('/delete', cors, async (req, res,next) => {
+  const { path } = req.body
+  fs.unlink(path, (err) => {
+    if (err) return next(err)
+    res.json({
+      ok: true,
+      message: '删除图片成功'
+    })
+  })
+})
+```
+
+这个路由使用了 `DELETE` 请求方法，而且传了 `JSON` 数据，我们需要修改下 `OPTIONS` 处理的响应头：
+
+```javascript
+app.options('*', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+  // 追加允许的请求方法
+  res.setHeader('Access-Control-Allow-Methods', 'POST, DELETE')
+  // 客户端发了JSON 追加允许的请求头 Content-Type
+  res.setHeader('Access-Control-Allow-Headers', 'x-requested-with,Content-Type')
+  next()
+})
+```
+
 ## 完整代码
 
 ```javascript
@@ -138,6 +174,7 @@ const app = express()
 const port = 8000
 const path = require('path')
 const multer = require('multer')
+const fs = require('fs')
 
 // 文件上传
 const upload = multer({
@@ -160,7 +197,10 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 // 处理所有的 OPTIONS 预检请求
 app.options('*', (req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
-  res.setHeader('Access-Control-Allow-Headers', 'x-requested-with')
+  // 追加允许的请求方法
+  res.setHeader('Access-Control-Allow-Methods', 'POST, DELETE')
+  // 客户端发了JSON 追加允许的请求头 Content-Type
+  res.setHeader('Access-Control-Allow-Headers', 'x-requested-with,Content-Type')
   next()
 })
 
@@ -180,6 +220,22 @@ app.post('/upload', cors, upload.single('file'), (req, res) => {
       name: filename,
       url: path
     }
+  })
+})
+
+// 解析客户端请求的JSON数据
+app.use(express.json())
+
+// 删除文件
+app.delete('/delete', cors, async (req, res, next) => {
+  // const { path } = req.body
+  const path = '11'
+  fs.unlink(path, (err) => {
+    if (err) return next(err)
+    res.json({
+      ok: true,
+      message: '删除图片成功'
+    })
   })
 })
 
