@@ -218,7 +218,35 @@ handleChange = ({ file, fileList }) => {
 
 ![optimize-fileList](/images/frontend/14/optimize-fileList.png)
 
+### 6. 删除功能
 
+点击删除时不只是清除 `state` 就完了，还需要删除服务端存的图片。设置 `onRemove` 属性绑定 `handleRemove` 函数，在函数里向后端发送删除请求，根据后端返回的结果再做处理。
+
+```javascript
+// 添加一个后端API
+const DELETE_URL = `${SERVER_URL}/delete`
+
+// 类组件中：
+handleRemove = async file => {
+  // 有url属性说明上传到了服务器
+  const { url } = file
+  if (url) {
+    const path = url.replace(`${SERVER_URL}/`, '')
+    const response = await fetch(DELETE_URL, {
+      method: 'delete',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ path })
+    })
+    const { ok, message: msg } = await response.json()
+    if (ok) {
+      message.success(msg)
+    } else {
+      message.error(msg)
+      return false
+    }
+  }
+}
+```
 
 ## 补充：Form自动收集Upload数据
 
