@@ -11,7 +11,7 @@ summary: ESLint 怎么使用？如何在 git commit 时强制通过 ESLint 代�
 
 ## 简介
 
-最开始认识 `ESLint` 是在别人的项目中，那时它给我带来了很多的苦恼，完全没有发现它有啥用。
+最开始认识 `ESLint` 是在别人的项目中，那时它给我带来了很多的苦恼，完全没有发现它有啥用，也没带来什么便利，只有一堆错误。
 
 最头大的一次是使用 `git commit` 提交代码时出现了一些报错，当时很小白的我真的很蒙蔽，感觉有点莫名奇妙，为什么那么多问题，然后一个一个去修改。而且有一些还不知道怎么修改，真的觉得谁没事弄个这个，很想吐槽。
 
@@ -150,13 +150,13 @@ npx eslint <file>
 **/*.js 当前文件夹所有js文件以及子文件夹里的js文件
 ```
 
-另外，运行 `eslint` 后如果存在没有指定 `React` 版本的警告：
+## 补充1：没有指定React版本？
+
+运行 `eslint` 后如果存在没有指定 `React` 版本的警告：
 
 ```shell
 Warning: React version not specified in eslint-plugin-react settings. 
 ```
-
-## 补充1：没有指定React版本？
 
 在配置文件中添加 `settings` 字段指定 `React` 版本，`detect` 为跟随项目安装的 `React` 版本。
 
