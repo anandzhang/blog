@@ -2,7 +2,7 @@
 typora-root-url: ../
 tags: eslint
 createTime: 2020-04-20
-updateTime: 2020-04-20
+updateTime: 2020-04-21
 keywords: eslint怎么用,eslint怎么配置,eslint git提交时进行检测
 summary: ESLint 怎么使用？如何在 git commit 时强制通过 ESLint 代码检测规则？
 ---
@@ -116,8 +116,19 @@ module.exports = {
   ignorePatterns: [
     'src/serviceWorker.js'
   ],
-  rules: {}
+  rules: {
+    'no-console': 'error',
+    'no-alert': 'error'
+  }
 }
+```
+
+`no-console` 和 `no-alert` 这两个规则我也喜欢，提交代码时经常忘记去掉不需要的 `console.log` 等。特殊情况需要你可以通过行注释来禁用这个规则：
+
+```javascript
+/* eslint-disable no-alert, no-console */
+console.log("welcome anand's blog")
+alert("welcome anand's blog")
 ```
 
 ### 3. 忽略文件或文件夹（可选）
