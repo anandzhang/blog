@@ -17,12 +17,11 @@
     "build": "webpack"
   },
   "dependencies": {
-    "art-template": "^4.13.2",
     "express": "^4.17.1",
-    "express-art-template": "^1.0.1",
     "highlight.js": "^9.18.1",
     "markdown-it": "^10.0.0",
-    "mongoose": "^5.8.11"
+    "mongoose": "^5.8.11",
+    "pug": "^2.0.4"
   },
   "devDependencies": {
     "css-loader": "^3.4.2",
