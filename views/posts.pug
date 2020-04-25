@@ -1,0 +1,39 @@
+extends layout.pug
+
+block metainfo
+  meta(
+    name='keywords'
+    content='归档,anand的博客文章归档'
+  )
+  meta(
+    name='description'
+    content='content="把文章进行小分类，嘻嘻。'
+  )
+
+block title
+  if category
+    title #{category} 目录 - 归档 - Anand's Blog
+  else if tag
+    title #{tag} 标签 - 归档 - Anand's Blog
+  else
+    title 文章 - Anand's Blog
+
+block content
+  unless (category || tag)
+    h1 文章 - Anand's Blog
+  ul.posts-list
+    each value in docs
+      li
+        h2
+          a(href=value.requestPath)= value.title
+        p.time
+          if value.createTime != value.updateTime
+            | 更新于 &nbsp;
+          | #{value.updateTime}
+        p #{value.summary}
+  .pagination
+    if current > 1
+      a(href=`/posts?page=${current - 1}`) &larr; 最近
+    span #{current} / #{total}
+    if current != total
+      a(href=`/posts?page=${current + 1}`) 更早 &rarr;
