@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/blog', {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
+})
 
 const stringRequired = { type: String, required: true }
 const postSchema = new mongoose.Schema({

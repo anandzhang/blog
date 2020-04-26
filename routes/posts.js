@@ -5,6 +5,7 @@ const pagination = require('../utils/pagination')
 
 router.get('/', (req, res) => {
   pagination(+req.query.page, {}, null, { updateTime: -1 }, (err, data) => {
+    if (err) console.log(err)
     res.render('posts', data)
   })
 })
