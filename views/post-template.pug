@@ -1,0 +1,17 @@
+extends layout.pug
+
+block metainfo
+  meta(
+    name='keywords'
+    content= keywords
+  )
+  meta(
+    name='description'
+    content= description
+  )
+
+block css
+  link(rel='stylesheet' href='/public/dist/markdown.bundle.css')
+
+block content
+  #markdown!= content

@@ -3,11 +3,11 @@ extends layout.pug
 block metainfo
   meta(
     name='keywords'
-    content='归档,anand的博客文章归档'
+    content='文章,前端学习,anand的博客文章'
   )
   meta(
     name='description'
-    content='content="把文章进行小分类，嘻嘻。'
+    content='Anand写一写文章，一起学习。'
   )
 
 block title
@@ -20,7 +20,7 @@ block title
 
 block content
   unless (category || tag)
-    h1 文章 - Anand's Blog
+    h1(style={'font-size': 0}) 文章 - Anand's Blog
   ul.posts-list
     each value in docs
       li

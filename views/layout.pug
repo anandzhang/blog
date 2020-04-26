@@ -59,3 +59,8 @@ html(lang='zh-cmn-Hans')
           a(href=GOV_URL)
             img(src='/public/img/beian.png' alt='beian')
             span 川公网安备 51018102000120号
+    script.
+      var mobileBtn = document.querySelector('.mobile-bar .btn')
+      mobileBtn.onclick = function () {
+        this.classList.toggle('close')
+      }
