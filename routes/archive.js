@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         }
       })
     })
-    res.render('archive', { sortByCategory, sortByTag })
+    res.render('archive', { sortByCategory, sortByTag, mainClass: 'archive' })
   })
 })
 

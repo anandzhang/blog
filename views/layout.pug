@@ -37,9 +37,9 @@ html(lang='zh-cmn-Hans')
           '/about': '关于我'
         }
       ul.mobile-nav
-      each value,key in routes
-        li
-          a(href=key)= value
+        each value,key in routes
+          li
+            a(href=key)= value
     .nav
       .container
         p.title Anand
@@ -48,7 +48,7 @@ html(lang='zh-cmn-Hans')
           each value,key in routes
             li
               a(href=key)= value
-    .main
+    div(class=`main ${mainClass}`)
       .content
         block content
         -
