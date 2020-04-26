@@ -1,0 +1,27 @@
+extends layout.pug
+
+block metainfo
+  meta(
+    name='keywords'
+    content='归档,anand的博客文章归档'
+  )
+  meta(
+    name='description'
+    content='把文章进行小分类，嘻嘻。'
+  )
+
+block title
+  title 归档 - Anand's Blog
+
+block content
+  h1(style={'font-size': 0}) 文章归档
+  h2 目录
+  ul(class='sort category')
+    each value in sortByCategory
+      li
+        a(href=`/archive/category/${value}`)= value
+  h2 标签
+  ul(class='sort tag')
+    each value in sortByTag
+      li
+        a(href=`/archive/tag/${value}`)= value
