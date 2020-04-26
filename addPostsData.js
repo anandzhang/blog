@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const mongoose = require('mongoose')
 const Post = require('./models/post')
 const md = require('./utils/markdown')
 const postsDirectory = './posts'
@@ -21,7 +20,6 @@ const traverseDirectory = async (directory, skipDirectories) => {
     }
   }
 }
-
 
 const parseMarkdown = (name, directory) => {
   const filePath = path.join(directory, name)
@@ -48,7 +46,7 @@ const parseMDContent = filePath => {
   const postURL = `https://anandzhang.com/${filePath.split('-').shift()}`
   copyright = copyright.replace('postURL', postURL).replace('postURL', postURL)
   // 文章末尾空行
-  if (content.slice(-1) != '\n') content += '\n'
+  if (content.slice(-1) !== '\n') content += '\n'
   content += copyright
   mdData.content = md.render(content)
   return mdData

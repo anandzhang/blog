@@ -2,15 +2,16 @@ const Post = require('../models/post')
 const pageLimit = 10
 /**
  * Post 模块的简单的分页
- * 
+ *
  * @param {Object} page {pageNumer, pageLimit}
  * @param {Object} conditions 查询条件
  * @param {Object} fields 需要返回的文档字段
  * @param {Object} sort 排序规则
  * @param {Function} callback 回调函数 callback(err, data)
  */
-function pagination(pageNumber, conditions, fields, sort, callback) {
+function pagination (pageNumber, conditions, fields, sort, callback) {
   Post.countDocuments(conditions, (err, count) => {
+    if (err) console.log(err)
     // 当前页
     let current = +pageNumber || 1
     // 总页数

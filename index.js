@@ -4,8 +4,8 @@ const app = express()
 const port = 3000
 
 // 配置模板引擎
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
 
 // 静态资源
 app.use('/public', express.static(path.join(__dirname, 'public')))
