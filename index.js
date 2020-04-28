@@ -8,8 +8,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 // 静态资源
-// app.use('/public', express.static(path.join(__dirname, 'public')))
-app.use('/public', express.static(path.join(__dirname, 'newUI')))
+app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use('/', express.static(path.join(__dirname, 'public/root')))
 app.use('/images', express.static(path.join(__dirname, 'posts/images')))
 

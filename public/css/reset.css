@@ -1,8 +1,9 @@
-body, ul, p, blockquote, h1, h2,h3 {
+body, p, h1, h2 {
   margin: 0;
 }
 
-ul {
+ul, ol {
+  margin: 0;
   padding-left: 0;
   list-style-type: none;
 }

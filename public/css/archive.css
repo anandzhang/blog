@@ -1,21 +1,31 @@
-.main.archive .sort.category {
-  padding-left: 30px;
-  list-style-type: circle;
+.main .content {
+  margin: 20px;
 }
 
-.main.archive .sort.category li {
-  margin: 8px 0;
-  text-decoration: underline;
+.content h2 {
+  font-size: 20px;
 }
 
-.main.archive .sort.tag {
-  padding-left: 20px;
+.tag {
+  margin-top: 20px;
 }
 
-.main.archive .sort.tag li {
+.category .list, .tag .list {
+  margin-top: 20px;
+}
+
+.category .list li {
+  margin: 8px 10px;
+  padding: 0 4px;
+  border-left: 10px solid #cfd8dc;
+  border-radius: 2px;
+}
+
+.tag .list li {
   display: inline-block;
-  margin: 5px;
-  padding: 6px 12px;
-  border-radius: 5px;
+  margin: 4px 6px;
+  padding: 4px 6px;
+  border: 1px solid #cfd8dc;
+  border-radius: 16px;
   background-color: #eee;
 }

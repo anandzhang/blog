@@ -1,185 +1,55 @@
-html, body {
-  width: 100%;
-  height: 100%;
+body {
+  font-family: Georgia, "Nimbus Roman No9 L", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif CN", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU, serif;
+  background-color: #fef9f4;
 }
 
-/* Navigation
+/* Header
 ------------------------------ */
 
-.nav {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background-color: #eee;
-  text-align: center;
+.header {
+  display: flex;
+  height: 74px;
+  line-height: 74px;
+  color: #333;
+  border-bottom: 1px solid #111;
 }
 
-.container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 200px;
-  height: 300px;
-}
-
-.title {
-  margin: 10px auto 0;
-  font-size: 32px;
+.header .logo {
   font-weight: bold;
 }
 
-.title .subtitle {
-  display: block;
-  font-size: 16px;
-  font-weight: normal;
-  text-transform: uppercase;
+.nav-list ul {
+  display: flex;
+  margin-left: 30px;
 }
 
-.nav-list {
-  margin: 30px 0;
+.nav-list ul li {
+  margin: 0 16px;
 }
 
-.nav-list li {
-  margin: 10px 0;
-}
-
-p.links {
-  margin: 30px 0 0;
-}
-
-ul.links {
-  margin: 10px 0;
-}
-
-ul.links li {
-  margin-top: 4px;
-}
-
-/* Main Content
------------------------------- */
-
-.main {
-  margin-left: 300px;
-  width: calc(100% - 300px);
-  height: 100%;
-}
-
-.main .content {
-  position: relative;
-  min-width: 500px;
-  margin: 0 10%;
-  padding: 30px 0;
-}
-
-/* Mobile Bar
------------------------------- */
-
-.mobile-bar {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 46px;
-  line-height: 46px;
-  text-align: center;
-  background-color: #fff;
-  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
-  z-index: 1;
-}
-
-.mobile-bar .btn {
-  position: absolute;
-  top: 14px;
-  left: 5%;
-  width: 24px;
-  height: 18px;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.mobile-bar .btn .line {
-  margin-top: 8px;
-  height: 2px;
-  background-color: #000;
+.nav-list a {
   transition: .3s;
 }
 
-.mobile-bar .btn::before, .mobile-bar .btn::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 24px;
-  height: 2px;
-  background-color: #000;
-  transition: .5s;
+.nav-list a:hover {
+  font-weight: bold;
 }
 
-.mobile-bar .btn::after {
-  bottom: 0;
+.nav-list li.active a {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  border-bottom: 1px solid #000;
 }
 
-.mobile-bar .btn.close .line {
-  opacity: 0;
-}
-
-.mobile-bar .btn.close::before {
-  top: 8px;
-  transform: rotate(45deg);
-}
-
-.mobile-bar .btn.close::after {
-  bottom: 8px;
-  transform: rotate(-45deg);
-}
-
-.mobile-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  transition: .8s;
-  z-index: 1;
-}
-
-.mobile-bar .btn.close+.mobile-title {
-  opacity: 0;
-  z-index: -1;
-}
-
-.mobile-nav {
+/* Footer
+------------------------------ */
+.footer {
   display: flex;
   justify-content: center;
-  opacity: 0;
-  transition: .8s;
-}
-
-.mobile-bar .btn.close~.mobile-nav {
-  opacity: 1;
-}
-
-.mobile-nav li {
-  margin: 0 2%;
-}
-
-@media screen and (max-width: 960px) {
-  .mobile-bar {
-    display: block;
-  }
-  .nav {
-    display: none;
-    width: 100%;
-  }
-  .main {
-    margin: 0 auto;
-    width: 100%;
-  }
-  .main .content {
-    min-width: auto;
-    margin: 0 5%;
-    padding: 46px 0;
-  }
+  position: absolute;
+  bottom: 0;
+  padding: 8px 0 10px;
+  border-top: 1px solid #333;
+  line-height: 20px;
 }
