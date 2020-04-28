@@ -3,11 +3,11 @@
  * 来自 https://github.com/anandzhang/markdown-css
  */
 
-/* #markdown {
-  font-family: sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-} */
+#markdown {
+  /* font-family: sans-serif; */
+  max-width: 1000px;
+  /* margin: 0 auto; */
+}
 
 /* Header
 -------------------- */
