@@ -1,0 +1,31 @@
+.main .content {
+  margin: 20px;
+}
+
+.content h2 {
+  font-size: 20px;
+}
+
+.tag {
+  margin-top: 20px;
+}
+
+.category .list, .tag .list {
+  margin-top: 20px;
+}
+
+.category .list li {
+  margin: 8px 10px;
+  padding: 0 4px;
+  border-left: 10px solid #cfd8dc;
+  border-radius: 2px;
+}
+
+.tag .list li {
+  display: inline-block;
+  margin: 4px 6px;
+  padding: 4px 6px;
+  border: 1px solid #cfd8dc;
+  border-radius: 16px;
+  background-color: #eee;
+}
