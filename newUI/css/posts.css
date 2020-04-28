@@ -1,0 +1,45 @@
+.main .content {
+  margin: 30px 10px;
+}
+
+.content .posts-list li {
+  margin: 20px 0;
+}
+
+.content .posts-list li::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  margin-top: 12px;
+  margin-left: 3px;
+  background-color: #777;
+}
+
+.posts-list li h2 {
+  font-size: 22px;
+}
+
+.posts-list li .time {
+  margin: 4px 0 8px;
+}
+
+.pagination {
+  padding-top: 10px;
+}
+
+.pagination .btn {
+  padding: 4px 10px;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.pagination .page-number {
+  margin: 0 10px;
+}
+
+.page-number .current {
+  color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+}
