@@ -1,0 +1,10 @@
+.main .content {
+  margin: 60px 20px 0;
+}
+
+.content p {
+  margin: 10px;
+  line-height: 1.6;
+  text-indent: 2em;
+  font-size: 20px;
+}
