@@ -3,13 +3,13 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   res.render('index', {
-    mainClass: 'index'
+    route: req.path
   })
 })
 
 router.get('/about', (req, res) => {
   res.render('about', {
-    mainClass: 'about'
+    route: req.path
   })
 })
 

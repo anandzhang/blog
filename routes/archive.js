@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         }
       })
     })
-    res.render('archive', { sortByCategory, sortByTag, mainClass: 'archive' })
+    res.render('archive', { sortByCategory, sortByTag, route: '/archive' })
   })
 })
 
@@ -31,7 +31,7 @@ router.get('/category/:category', (req, res) => {
   const sort = { updateTime: -1 }
   pagination(pageNumber, conditions, null, sort, (err, data) => {
     if (err) console.log(err)
-    res.render('posts', { category, ...data })
+    res.render('posts', { category, route: '/archive', ...data })
   })
 })
 
@@ -42,7 +42,7 @@ router.get('/tag/:tag', (req, res) => {
   const sort = { updateTime: -1 }
   pagination(pageNumber, conditions, null, sort, (err, data) => {
     if (err) console.log(err)
-    res.render('posts', { tag, ...data })
+    res.render('posts', { tag, route: '/archive', ...data })
   })
 })
 
