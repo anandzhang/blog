@@ -1,0 +1,30 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-break-up {
+  margin: 0 8px;
+}
+
+.off-doc-center {
+  left: 0;
+  right: 0;
+}
+
+.img-vertical-middle {
+  vertical-align: middle;
+}
+
+.img-vertical-bottom {
+  vertical-align: bottom;
+}
+
+.f-right {
+  float: right;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+}

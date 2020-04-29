@@ -5,6 +5,10 @@ module.exports = {
   mode: 'production',
   entry: {
     common: './minify/common.js',
+    index: './minify/index.js',
+    posts: './minify/posts.js',
+    archive: './minify/archive.js',
+    about: './minify/about.js',
     markdown: './minify/markdown.js'
   },
   output: {

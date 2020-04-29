@@ -10,7 +10,7 @@ html(lang='zh-cmn-Hans')
       http-equiv='X-UA-Compatible'
       content='ie=edge'
     )
-    block metainfo
+    block seo
       meta(
         name='keywords'
         content='anand,anandzhang,个人博客,前端学习,anand的个人博客'
@@ -25,42 +25,32 @@ html(lang='zh-cmn-Hans')
     link(rel='stylesheet' href='/public/dist/common.bundle.css')
     block css
   body
-    .mobile-bar
-      .btn
-        .line
-      .mobile-title Anand's Blog
-      -
-        var routes = {
-          '/': '主页',
-          '/posts': '文章',
-          '/archive': '归档',
-          '/about': '关于我'
-        }
-      ul.mobile-nav
-        each value,key in routes
-          li
-            a(href=key)= value
-    .nav
-      .container
-        p.title Anand
-          span.subtitle personal blog
-        ul.nav-list
-          each value,key in routes
-            li
-              a(href=key)= value
-    div(class=`main ${mainClass}`)
-      .content
-        block content
-        -
-          var MIIT_URL = 'http://beian.miit.gov.cn/'
-          var GOV_URL = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51018102000120'
-        div(style={position: 'absolute',bottom: 0})
-          a(href=MIIT_URL) 蜀ICP备20003489号 |
-          a(href=GOV_URL)
-            img(src='/public/img/beian.png' alt='beian')
-            span 川公网安备 51018102000120号
-    script.
-      var mobileBtn = document.querySelector('.mobile-bar .btn')
-      mobileBtn.onclick = function () {
-        this.classList.toggle('close')
+    -
+      var routes = {
+        '/': '主页',
+        '/posts': '文章',
+        '/archive': '归档',
+        '/about': '关于我'
       }
+    header(class='header container')
+      p.logo Anand's Blog
+      nav.nav-list
+        ul
+          each value, key in routes
+            li(class= key===route? 'active' : '')
+              a(href=key)= value
+      .mobile-btn
+        .line
+    main.main
+      .container
+        .content
+          block content
+    footer#footer(class='footer container fixed-bottom off-doc-center')
+      p &copy; 2020 Anand's Blog
+      p.footer-break-up |
+      a(href='http://beian.miit.gov.cn/') 蜀ICP备20003489号
+      p.footer-break-up |
+      a(href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51018102000120")
+        img.img-vertical-bottom(src='/public/img/beian.png' alt='beian')
+        span 川公网安备 51018102000120号
+    script(src='/public/dist/fix-footer.bundle.js')

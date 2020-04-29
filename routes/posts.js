@@ -6,7 +6,10 @@ const pagination = require('../utils/pagination')
 router.get('/', (req, res) => {
   pagination(+req.query.page, {}, null, { updateTime: -1 }, (err, data) => {
     if (err) console.log(err)
-    res.render('posts', data)
+    res.render('posts', {
+      route: '/posts',
+      ...data
+    })
   })
 })
 
@@ -18,7 +21,8 @@ router.get('/*/\\d+', (req, res) => {
       title: doc.title,
       keywords: doc.keywords,
       description: doc.summary,
-      content: doc.content
+      content: doc.content,
+      route: '/posts'
     })
   })
 })

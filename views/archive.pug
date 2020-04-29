@@ -1,6 +1,6 @@
 extends layout.pug
 
-block metainfo
+block seo
   meta(
     name='keywords'
     content='归档,anand的博客文章归档'
@@ -13,15 +13,19 @@ block metainfo
 block title
   title 归档 - Anand's Blog
 
+block css
+  link(rel='stylesheet' href='/public/dist/archive.bundle.css')
+
 block content
-  h1(style={'font-size': 0}) 文章归档
-  h2 目录
-  ul(class='sort category')
-    each value in sortByCategory
-      li
-        a(href=`/archive/category/${value}`)= value
-  h2 标签
-  ul(class='sort tag')
-    each value in sortByTag
-      li
-        a(href=`/archive/tag/${value}`)= value
+  .category
+    h2 目录
+    ul.list
+      each value in sortByCategory
+        li
+          a(href=`/archive/category/${value}`)= value
+  .tag
+    h2 标签
+    ul.list
+      each value in sortByTag
+        li
+          a(href=`/archive/tag/${value}`)= value

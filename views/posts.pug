@@ -1,6 +1,7 @@
 extends layout.pug
 
-block metainfo
+block seo
+  block metainfo
   meta(
     name='keywords'
     content='文章,前端学习,anand的博客文章'
@@ -18,10 +19,11 @@ block title
   else
     title 文章 - Anand's Blog
 
+block css
+  link(rel='stylesheet' href='/public/dist/posts.bundle.css')
+
 block content
-  unless (category || tag)
-    h1(style={'font-size': 0}) 文章 - Anand's Blog
-  ul.posts-list
+  ol.posts-list
     each value in docs
       li
         h2
@@ -33,7 +35,10 @@ block content
         p #{value.summary}
   .pagination
     if current > 1
-      a(href=`/posts?page=${current - 1}`) &larr; 最近
-    span #{current} / #{total}
+      a(class='btn' href=`/posts?page=${current - 1}`) &larr; 最近
+    span.page-number
+      span.current= current
+      span /
+      span= total
     if current != total
-      a(href=`/posts?page=${current + 1}`) 更早 &rarr;
+      a(class='btn' href=`/posts?page=${current + 1}`) 更早 &rarr;

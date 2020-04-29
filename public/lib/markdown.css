@@ -3,9 +3,9 @@
  * 来自 https://github.com/anandzhang/markdown-css
  */
 
- #markdown {
-  font-family: sans-serif;
-  max-width: 800px;
+#markdown {
+  /* font-family: sans-serif; */
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -17,7 +17,8 @@
 }
 
 #markdown h1 {
-  margin: 20px 0;
+  /* margin: 20px 0; */
+  margin: 40px 0 24px;
   text-align: center;
 }
 
