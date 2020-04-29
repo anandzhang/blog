@@ -28,3 +28,9 @@
   position: fixed;
   bottom: 0;
 }
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
