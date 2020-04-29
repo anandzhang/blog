@@ -12,7 +12,12 @@ block seo
   )
 
 block title
-  title 文章 - Anand's Blog
+  if category
+    title #{category} 目录 - 归档 - Anand's Blog
+  else if tag
+    title #{tag} 标签 - 归档 - Anand's Blog
+  else
+    title 文章 - Anand's Blog
 
 block css
   link(rel='stylesheet' href='/public/dist/posts.bundle.css')
