@@ -8,15 +8,12 @@
 }
 
 .translate {
+  margin-bottom: 20px;
   color: #333;
 }
 
 .enter {
-  width: 100px;
-  margin: 30px 0;
-  padding: 5px 0px;
+  padding: 5px 10px;
   border: 1px solid #333;
   border-radius: 6px;
-  text-align: center;
-  cursor: pointer;
 }
