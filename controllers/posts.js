@@ -1,0 +1,26 @@
+const Post = require('../models/post')
+const pagination = require('../utils/pagination')
+
+exports.getPosts = (req, res) => {
+  pagination(+req.query.page, {}, null, { updateTime: -1 }, (err, data) => {
+    if (err) console.log(err)
+    res.render('posts', {
+      route: '/posts',
+      ...data
+    })
+  })
+}
+
+exports.getPost = (req, res) => {
+  Post.findOne({ requestPath: req.originalUrl }, (err, doc) => {
+    if (err) return res.status(500).send(err)
+    if (!doc) return res.status(404).send('404 文章不存在')
+    res.render('post-template', {
+      title: doc.title,
+      keywords: doc.keywords,
+      description: doc.summary,
+      content: doc.content,
+      route: '/posts'
+    })
+  })
+}
