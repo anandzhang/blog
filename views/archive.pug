@@ -20,12 +20,12 @@ block content
   .category
     h2 目录
     ul.list
-      each value in sortByCategory
+      each value in categories
         li
           a(href=`/archive/category/${value}`)= value
   .tag
     h2 标签
     ul.list
-      each value in sortByTag
+      each value in tags
         li
           a(href=`/archive/tag/${value}`)= value

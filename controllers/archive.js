@@ -6,21 +6,18 @@ exports.getCategoriesAndTags = (req, res) => {
   const usefulFields = dbFields(['category', 'tags'])
   Post.find({}, usefulFields, (err, docs) => {
     if (err) return res.status(500).send(err)
-    const sortByCategory = []
-    const sortByTag = []
-    docs.forEach((value) => {
-      const category = value.category.split('/').shift()
-      if (sortByCategory.indexOf(category) < 0) {
-        sortByCategory.push(value.category.split('/').shift())
-      }
-      // 已存在的标签不再重复添加
-      value.tags.forEach((value) => {
-        if (sortByTag.indexOf(value) < 0) {
-          sortByTag.push(value)
-        }
+    const data = docs.reduce((pre, cur) => {
+      const { category, tags } = cur
+      // 只需要一级目录
+      const dir = category.split('/').shift()
+      if (!pre.categories.includes(dir)) pre.categories.push(dir)
+      // 添加标签
+      tags.forEach(tag => {
+        if (!pre.tags.includes(tag)) pre.tags.push(tag)
       })
-    })
-    res.render('archive', { sortByCategory, sortByTag, route: '/archive' })
+      return pre
+    }, { categories: [], tags: [] })
+    res.render('archive', { ...data, route: '/archive' })
   })
 }
 
