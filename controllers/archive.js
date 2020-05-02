@@ -2,10 +2,10 @@ const Post = require('../models/post')
 const Pagination = require('../utils/Pagination')
 const { dbFields, dbSort } = require('../utils/dbParamFactory')
 
-exports.getCategoriesAndTags = (req, res) => {
+exports.getCategoriesAndTags = async (req, res) => {
   const usefulFields = dbFields(['category', 'tags'])
-  Post.find({}, usefulFields, (err, docs) => {
-    if (err) return res.status(500).send(err)
+  try {
+    const docs = await Post.find({}, usefulFields)
     const data = docs.reduce((pre, cur) => {
       const { category, tags } = cur
       // 只需要一级目录
@@ -18,7 +18,9 @@ exports.getCategoriesAndTags = (req, res) => {
       return pre
     }, { categories: [], tags: [] })
     res.render('archive', { ...data, route: '/archive' })
-  })
+  } catch (err) {
+    return res.status(500).send(err)
+  }
 }
 
 exports.archiveByCategory = async (req, res) => {

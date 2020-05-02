@@ -9,9 +9,9 @@ exports.getPosts = async (req, res) => {
   res.render('posts', { route: '/posts', ...data })
 }
 
-exports.getPost = (req, res) => {
-  Post.findOne({ requestPath: req.originalUrl }, (err, doc) => {
-    if (err) return res.status(500).send(err)
+exports.getPost = async (req, res) => {
+  try {
+    const doc = await Post.findOne({ requestPath: req.originalUrl })
     if (!doc) return res.status(404).send('404 文章不存在')
     res.render('post-template', {
       title: doc.title,
@@ -20,5 +20,7 @@ exports.getPost = (req, res) => {
       content: doc.content,
       route: '/posts'
     })
-  })
+  } catch (err) {
+    return res.status(500).send(err)
+  }
 }
