@@ -1,6 +1,6 @@
 const Post = require('../models/post')
-const pagination = require('../utils/pagination')
-const dbFields = require('../utils/dbFields')
+const Pagination = require('../utils/Pagination')
+const { dbFields, dbSort } = require('../utils/dbParamFactory')
 
 exports.getCategoriesAndTags = (req, res) => {
   const usefulFields = dbFields(['category', 'tags'])
@@ -21,24 +21,22 @@ exports.getCategoriesAndTags = (req, res) => {
   })
 }
 
-exports.archiveByCategory = (req, res) => {
-  const pageNumber = +req.query.page
+exports.archiveByCategory = async (req, res) => {
+  const page = +req.query.page
   const { category } = req.params
   const conditions = { category: { $regex: `${category}/*` } }
-  const sort = { updateTime: -1 }
-  pagination(pageNumber, conditions, null, sort, (err, data) => {
-    if (err) console.log(err)
-    res.render('posts', { category, route: '/archive', ...data })
-  })
+  const sort = dbSort('updateTime', 'DESC')
+  const pagination = new Pagination(Post)
+  const data = await pagination.getPageData(page, conditions, {}, sort)
+  res.render('posts', { category, route: '/archive', ...data })
 }
 
-exports.archiveByTag = (req, res) => {
-  const pageNumber = +req.query.page
+exports.archiveByTag = async (req, res) => {
+  const page = +req.query.page
   const { tag } = req.params
   const conditions = { tags: { $elemMatch: { $eq: tag } } }
   const sort = { updateTime: -1 }
-  pagination(pageNumber, conditions, null, sort, (err, data) => {
-    if (err) console.log(err)
-    res.render('posts', { tag, route: '/archive', ...data })
-  })
+  const pagination = new Pagination(Post)
+  const data = await pagination.getPageData(page, conditions, {}, sort)
+  res.render('posts', { tag, route: '/archive', ...data })
 }

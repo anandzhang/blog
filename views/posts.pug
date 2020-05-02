@@ -24,7 +24,7 @@ block css
 
 block content
   ol.posts-list
-    each value in docs
+    each value in pageData
       li
         h2
           a(href=value.requestPath)= value.title

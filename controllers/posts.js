@@ -1,14 +1,12 @@
 const Post = require('../models/post')
-const pagination = require('../utils/pagination')
+const Pagination = require('../utils/Pagination')
+const { dbSort } = require('../utils/dbParamFactory')
 
-exports.getPosts = (req, res) => {
-  pagination(+req.query.page, {}, null, { updateTime: -1 }, (err, data) => {
-    if (err) console.log(err)
-    res.render('posts', {
-      route: '/posts',
-      ...data
-    })
-  })
+exports.getPosts = async (req, res) => {
+  const page = +req.query.page
+  const pagination = new Pagination(Post)
+  const data = await pagination.getPageData(page, {}, {}, dbSort('updateTime', 'DESC'))
+  res.render('posts', { route: '/posts', ...data })
 }
 
 exports.getPost = (req, res) => {
