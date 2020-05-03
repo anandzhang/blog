@@ -30,9 +30,8 @@ exports.archiveByCategory = async (req, res, next) => {
     const sort = dbSort('updateTime', 'DESC')
     const pagination = new Pagination(Post)
     const data = await pagination.getPageData(page, conditions, {}, sort)
-    const previousUrl = `${req.originalUrl}&page=${data.current - 1}`
-    const nextUrl = `${req.originalUrl}&page=${data.current + 1}`
-    console.log(data.pagesTotal)
+    const previousUrl = `${req.baseUrl}?category=${category}&page=${+data.current - 1}`
+    const nextUrl = `${req.baseUrl}?category=${category}&page=${+data.current + 1}`
     res.render('posts', { category, route: '/archive', previousUrl, nextUrl, ...data })
   } else {
     next()
@@ -41,14 +40,13 @@ exports.archiveByCategory = async (req, res, next) => {
 
 exports.archiveByTag = async (req, res, next) => {
   const { page, tag } = req.query
-  console.log(typeof page)
   if (tag) {
     const conditions = { tags: { $elemMatch: { $eq: tag } } }
     const sort = { updateTime: -1 }
     const pagination = new Pagination(Post)
     const data = await pagination.getPageData(page, conditions, {}, sort)
-    const previousUrl = `${req.originalUrl}&page=${data.current - 1}`
-    const nextUrl = `${req.originalUrl}&page=${data.current + 1}`
+    const previousUrl = `${req.baseUrl}?tag=${tag}&page=${+data.current - 1}`
+    const nextUrl = `${req.baseUrl}?tag=${tag}&page=${+data.current + 1}`
     res.render('posts', { tag, route: '/archive', previousUrl, nextUrl, ...data })
   } else {
     next()
