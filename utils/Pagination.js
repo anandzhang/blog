@@ -4,7 +4,7 @@
  * @class Pagination
  */
 class Pagination {
-  constructor (dataSource, pageSize = 2) {
+  constructor (dataSource, pageSize = 8) {
     this.dataSource = dataSource
     this.pageSize = pageSize
   }
