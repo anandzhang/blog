@@ -25,6 +25,7 @@ html(lang='zh-cmn-Hans')
     link(rel="stylesheet" href='/public/dist/fonts.bundle.css' media="print" onload="this.media='all'")
     link(rel='stylesheet' href='/public/dist/common.bundle.css')
     block css
+    script(src='/public/dist/fix-footer.bundle.js')
   body
     -
       var routes = {
@@ -54,4 +55,3 @@ html(lang='zh-cmn-Hans')
       a(href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51018102000120")
         img.img-vertical-bottom(src='/public/img/beian.png' alt='beian')
         span 川公网安备 51018102000120号
-    script(src='/public/dist/fix-footer.bundle.js')
