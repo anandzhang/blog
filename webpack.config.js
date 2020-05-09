@@ -4,6 +4,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: {
+    fonts: './minify/fonts.js',
     common: './minify/common.js',
     index: './minify/index.js',
     posts: './minify/posts.js',
