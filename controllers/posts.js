@@ -6,8 +6,8 @@ exports.getPosts = async (req, res) => {
   const { page } = req.query
   const pagination = new Pagination(Post)
   const data = await pagination.getPageData(page, {}, {}, dbSort('updateTime', 'DESC'))
-  const previousUrl = `${req.baseUrl}?&page=${+data.current - 1}`
-  const nextUrl = `${req.baseUrl}?&page=${+data.current + 1}`
+  const previousUrl = `${req.baseUrl}?page=${+data.current - 1}`
+  const nextUrl = `${req.baseUrl}?page=${+data.current + 1}`
   res.render('posts', { route: '/posts', previousUrl, nextUrl, ...data })
 }
 
