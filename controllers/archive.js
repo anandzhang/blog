@@ -23,22 +23,32 @@ exports.getCategoriesAndTags = async (req, res) => {
   }
 }
 
-exports.archiveByCategory = async (req, res) => {
-  const page = +req.query.page
-  const { category } = req.params
-  const conditions = { category: { $regex: `${category}/*` } }
-  const sort = dbSort('updateTime', 'DESC')
-  const pagination = new Pagination(Post)
-  const data = await pagination.getPageData(page, conditions, {}, sort)
-  res.render('posts', { category, route: '/archive', ...data })
+exports.archiveByCategory = async (req, res, next) => {
+  const { page, category } = req.query
+  if (category) {
+    const conditions = { category: { $regex: `${category}/*` } }
+    const sort = dbSort('updateTime', 'DESC')
+    const pagination = new Pagination(Post)
+    const data = await pagination.getPageData(page, conditions, {}, sort)
+    const previousUrl = `${req.baseUrl}?category=${category}&page=${+data.current - 1}`
+    const nextUrl = `${req.baseUrl}?category=${category}&page=${+data.current + 1}`
+    res.render('posts', { category, route: '/archive', previousUrl, nextUrl, ...data })
+  } else {
+    next()
+  }
 }
 
-exports.archiveByTag = async (req, res) => {
-  const page = +req.query.page
-  const { tag } = req.params
-  const conditions = { tags: { $elemMatch: { $eq: tag } } }
-  const sort = { updateTime: -1 }
-  const pagination = new Pagination(Post)
-  const data = await pagination.getPageData(page, conditions, {}, sort)
-  res.render('posts', { tag, route: '/archive', ...data })
+exports.archiveByTag = async (req, res, next) => {
+  const { page, tag } = req.query
+  if (tag) {
+    const conditions = { tags: { $elemMatch: { $eq: tag } } }
+    const sort = { updateTime: -1 }
+    const pagination = new Pagination(Post)
+    const data = await pagination.getPageData(page, conditions, {}, sort)
+    const previousUrl = `${req.baseUrl}?tag=${tag}&page=${+data.current - 1}`
+    const nextUrl = `${req.baseUrl}?tag=${tag}&page=${+data.current + 1}`
+    res.render('posts', { tag, route: '/archive', previousUrl, nextUrl, ...data })
+  } else {
+    next()
+  }
 }

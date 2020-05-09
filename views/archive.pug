@@ -22,10 +22,10 @@ block content
     ul.list
       each value in categories
         li
-          a(href=`/archive/category/${value}`)= value
+          a(href=`/archive?category=${value}`)= value
   .tag
     h2 标签
     ul.list
       each value in tags
         li
-          a(href=`/archive/tag/${value}`)= value
+          a(href=`/archive?tag=${value}`)= value

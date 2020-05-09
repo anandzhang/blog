@@ -3,10 +3,12 @@
  */
 const express = require('express')
 const router = express.Router()
-const controllers = require('../controllers/archive')
+const {
+  archiveByCategory,
+  archiveByTag,
+  getCategoriesAndTags
+} = require('../controllers/archive')
 
-router.get('/', controllers.getCategoriesAndTags)
-router.get('/category/:category', controllers.archiveByCategory)
-router.get('/tag/:tag', controllers.archiveByTag)
+router.get('/', archiveByCategory, archiveByTag, getCategoriesAndTags)
 
 module.exports = router

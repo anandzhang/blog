@@ -35,10 +35,10 @@ block content
         p #{value.summary}
   .pagination
     if current > 1
-      a(class='btn' href=`/posts?page=${current - 1}`) &larr; 最近
+      a(class='btn' href=previousUrl) &larr; 最近
     span.page-number
       span.current= current
       span /
-      span= total
-    if current != total
-      a(class='btn' href=`/posts?page=${current + 1}`) 更早 &rarr;
+      span= pagesTotal
+    if current != pagesTotal
+      a(class='btn' href=nextUrl) 更早 &rarr;
