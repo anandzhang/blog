@@ -61,7 +61,7 @@ summary: 使用U盘重装 Windows 10，还你一个最纯净的Win10。需求：
 
    ![step6](/images/windows/1/step6.JPG)
 
-2. 进入 PE 系统
+2. 进入 PE 系统（安装多少位系统就进入多少为PE系统，64位系统的 setup.exe在32位PE系统中无法执行）
 
    ![step7](/images/windows/1/step7.JPG)
 
