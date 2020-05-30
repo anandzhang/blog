@@ -97,3 +97,44 @@ const changeVisible = () => setVisible(!visible)
 ```
 
 这样使用 `ES6` 的语法简写后看上去也比较舒服了。
+
+### PropTypes
+
+通常我们都会使用到 `prop-types` 对 `pops` 进行类型检查，但是向上面的方法那样使用 `forwardRef` 钩子创建组件后会出现一个警告：
+
+```
+Warning: forwardRef render functions do not support propTypes or defaultProps. 
+```
+
+提示不支持 `propTypes` 和 `defaultProps` 了，所有我们应该这样创建函数组件：
+
+```jsx
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from 'react'
+import PropTypes from 'prop-types'
+import { Modal, Form } from 'antd'
+
+const Child = forwardRef((props, ref) => {
+  const [visible, setVisible] = useState(false)
+  useImperativeHandle(ref, () => ({
+    changeVisible() {
+      setVisible(!visible)
+    }
+  }))
+
+  return (
+    <Modal visible={visible}>
+      <Form></Form>
+    </Modal>
+  )
+})
+
+// 这样就可以使用 propTypes 啦
+Child.propTypes = {}
+
+export default Child
+```
+
