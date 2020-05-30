@@ -117,7 +117,7 @@ import React, {
 import PropTypes from 'prop-types'
 import { Modal, Form } from 'antd'
 
-const Child = forwardRef(Modal = (props, ref) => {
+const Child = forwardRef(function Component(props, ref) {
   const [visible, setVisible] = useState(false)
   useImperativeHandle(ref, () => ({
     changeVisible() {
