@@ -117,7 +117,7 @@ import React, {
 import PropTypes from 'prop-types'
 import { Modal, Form } from 'antd'
 
-const Child = forwardRef((props, ref) => {
+const Child = forwardRef(Modal = (props, ref) => {
   const [visible, setVisible] = useState(false)
   useImperativeHandle(ref, () => ({
     changeVisible() {
@@ -138,3 +138,8 @@ Child.propTypes = {}
 export default Child
 ```
 
+细心的小伙伴会发现 `forwardRef` 钩子传入的组件并不是匿名组件，这是因为匿名组件的话使用 `eslint` 规范检测的时候会出现一个错误：
+
+```
+Component definition is missing display name  react/display-name
+```
