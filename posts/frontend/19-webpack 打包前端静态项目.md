@@ -319,6 +319,19 @@ module.exports = {
 }
 ```
 
+另外，`bundle.js` 文件中其实会存在一些项目依赖打包后的 `license` 许可注释，但是我们并不需要它存在，可以这样简单的配置一下 `terser-webpack-plugin` 插件。
+
+```javascript
+new TerserWebpackPlugin({
+  terserOptions: {
+    format: {
+      comments: false
+    }
+  },
+  extractComments: false
+})
+```
+
 #### html-inline-css-webpack-plugin
 
 因为我们需要打包压缩生成好的 `css` 文件直接插入到 `index.html` 文件的 `head` 的 `style` ，而不是使用 `link` 方式，所以我们还可以再使用一个插件 `html-inline-css-webpack-plugin`。
