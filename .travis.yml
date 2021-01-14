@@ -6,6 +6,7 @@ env:
     secure: Z78y2sdi8yr+B3SxcoeQff19Plq9cs/yhsTXm/Wz6819qg2JbyLet8I1UFcY58PMA3FBJ25JZ/OVMqKzDJ5yroDUHn8b8RVdtMi905W95gRgnq4oEBla+/SzB9GdEBLLU8yPUYZNya8ojrvk+/SkkMPjxXDSaFhaAz3mX5FvbakWcxYA/fwDiyovOy53+C31PWcJKIoKrHIm29T/uZyG+voXs04eAX6BCIFcJxNo+4WP6RFrB3PaBHibDipMs3WjEX61Y/oxsWjIh3h/yJ0VIqG83jNK5GHDbAG+cpPwXyMd77M2ayjFPeOPhyjz4quwqDya/wBmmDsSbxRmhb7xIOhAKlkJnJTMugG0AXKTvZfFWz4sHy61ikTHbJZzJZGCiA7LQBvCGg0Jec0fDUZxzazMJFWmPcro28R8eA3QzpcClTFMBLROXBmzyvviy81dORhubhhZ2sh5PrrpeU8IbZ4afA98YAqw6et6Mg/BHUdbZlsHl9c7uEpjDVDW7YoCz+9sqSUmfCzlEa3k5O7eiLxNjgchJtXP4In3BstP5jRjh8P1LOveveTuUfHTcKyL9uyha/q/BJdl9xskmvMfgLknMO3q4VthkFaLT2qpxuLn5jbFJ8nA9JQBisSofFGxZ96vAJ9EE5D50f1k/85/7XEmriPxf8r4rnDAyvdwxU0=
 before_install:
   - openssl aes-256-cbc -K $encrypted_a62f2225bf70_key -iv $encrypted_a62f2225bf70_iv -in key.enc -out key -d
+  - chmod 600 key
   - eval "$(ssh-agent -s)"
   - ssh-add key
 after_success:
