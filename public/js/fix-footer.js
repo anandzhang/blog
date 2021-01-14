@@ -1,5 +1,5 @@
 function hasScrollBar () {
-  var visibleHeight = window.innerHeight || document.documentElement.clientHeight
+  const visibleHeight = window.innerHeight || document.documentElement.clientHeight
   return document.body.scrollHeight > visibleHeight
 }
 
@@ -11,6 +11,6 @@ function whetherToFixFooter () {
   }
 }
 
-var footer = document.getElementById('footer')
+const footer = document.getElementById('footer')
 window.onload = whetherToFixFooter
 window.onresize = whetherToFixFooter

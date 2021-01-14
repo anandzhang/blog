@@ -8,12 +8,12 @@ module.exports = {
   entry: {
     bundle: [
       './public/js/fix-footer.js',
-      './public/js/mobile-bar.js',
+      './public/js/mobile-bar.js'
     ],
     common: [
       './public/css/reset.css',
       './public/css/reuse.css',
-      './public/css/common.css',
+      './public/css/common.css'
     ],
     index: './public/css/index.css',
     posts: './public/css/posts.css',
@@ -21,7 +21,7 @@ module.exports = {
     about: './public/css/about.css',
     markdown: [
       './public/lib/markdown.css',
-      './public/lib/atom-one-light.css',
+      './public/lib/atom-one-light.css'
     ]
   },
   output: {
@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin()
   ],
   module: {
     rules: [
@@ -43,7 +43,7 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      new CssMinimizerPlugin(),
+      new CssMinimizerPlugin()
     ]
-  },
+  }
 }

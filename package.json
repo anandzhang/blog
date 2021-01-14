@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "test": "exit 0",
-    "build": "webpack && cd public/dist/ && ls | grep .js | grep -v bundle.js | xargs rm"
+    "build": "webpack && cd public/dist/ && ls | grep .js | grep -v bundle.js | xargs rm",
+    "lint": "eslint --fix --ext .js,.ts ."
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -12,11 +13,29 @@
     "pug": "^3.0.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "css-minimizer-webpack-plugin": "^1.2.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^4.3.7",
+    "lint-staged": "^10.5.3",
     "mini-css-extract-plugin": "^1.3.4",
+    "typescript": "^4.1.3",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix"
   }
 }
