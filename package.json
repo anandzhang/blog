@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "test": "exit 0",
     "build": "webpack && cd public/dist/ && ls | grep .js | grep -v bundle.js | xargs rm"
   },
   "dependencies": {
