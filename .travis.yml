@@ -5,9 +5,9 @@ env:
   global:
     secure: Fk0gYc6fXRTtmGy2R92NCnjXzGgCInk+bbCWfM9YNWJO4bA5hEK+mCpg4DD9qijHdSGLxFHYkdAiPTsIWlFFusBb7OLaMki71VlWSqigFf80HPb3jB1crn7RIqkWasLGKaoho+K2GzTSc51Gkh1P9oF682F5ADMxy68jMFDSW4p1DWzPk4OctjWt6bkUMERUgecAwxjq8KcmJoLgmKL7pjuK9Egnvro/j1jSur1DaxqcpF/08V9gS7Jq4n3h4Vz1vbrMXGuTV3wgsEvYbt2IZswjZzojPq8c8tWOnu5PAxz7t2NBUqfnW+20QkyoHEmOu1hTIvF9K8MN4ZxPdzHElum7/Yz+WrRRTOkbShNaQHh+QqPiGCE6CDDlBXbmFb4Oony1akxovKxYN/tbZc93F9TfXme0EPK7iATReoJoWb0hN6KYVGHUCh+J1+S+xke69aJ3RgOMZi7bMhG5j55+A7gtyahJyRxzHOfCrhx9dSaFUPQ0SFFtDpltwztU0iyC4q1cHU47KsOxztNEbaFH9QXrIfWl4gMEumwoIUDEZCjhdpwRSBgUV4YJlSbxDQRXiovaEeI8H7qkezSq7nIBAX84h3txg8Eb159KMYTzm+CxaotT7doUcZcs6n85orFlNlgAye4ajOcRWurvOERSQpCUi0VtLANrh0C80nZ/HR8=
 before_install:
-  - openssl aes-256-cbc -K $encrypted_0e804a5a288f_key -iv $encrypted_0e804a5a288f_iv
-  - in key.enc -out ./key -d
+  - openssl aes-256-cbc -K $encrypted_a62f2225bf70_key -iv $encrypted_a62f2225bf70_iv
+  -in key.enc -out key -d
 after_success:
-  - ssh -i ./key travis@${SERVER}
-  - echo 'Travis !!' >>test
-  - exit
+- ssh -i ./key travis@${SERVER}
+- echo 'Travis !!' >>test
+- exit
