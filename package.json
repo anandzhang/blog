@@ -1,45 +1,21 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "anand's blog",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anandzhang/blog.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/anandzhang/blog/issues"
-  },
+  "private": true,
   "scripts": {
-    "build": "webpack"
+    "build": "webpack && cd public/dist/ && ls | grep .js | grep -v bundle.js | xargs rm"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "highlight.js": "^9.18.1",
-    "markdown-it": "^10.0.0",
-    "mongoose": "^5.8.11",
-    "pug": "^2.0.4"
+    "highlight.js": "^10.5.0",
+    "markdown-it": "^12.0.4",
+    "mongoose": "^5.11.11",
+    "pug": "^3.0.0"
   },
   "devDependencies": {
-    "css-loader": "^3.4.2",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.5",
-    "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint --fix --ext .js . && git add ."
-    }
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^1.2.0",
+    "mini-css-extract-plugin": "^1.3.4",
+    "webpack": "^5.14.0",
+    "webpack-cli": "^4.3.1"
   }
 }
