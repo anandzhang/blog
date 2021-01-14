@@ -10,6 +10,6 @@ before_install:
   - eval "$(ssh-agent -s)"
   - ssh-add key
 after_success:
-  - ssh travis@${SERVER}
+  - ssh -o StrictHostKeyChecking=no travis@${SERVER}
   - echo 'Travis !!' >>test
   - exit
