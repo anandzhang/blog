@@ -10,3 +10,5 @@ before_deploy:
 deploy:
   provider: script
   script: ssh -i key -o StrictHostKeyChecking=no travis@${SERVER} /projects/deploy.blog.sh
+  on:
+    all_branches: true
