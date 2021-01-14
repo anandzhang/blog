@@ -10,5 +10,3 @@ before_install:
 deploy:
   provider: script
   script: ssh -i key -o StrictHostKeyChecking=no travis@${SERVER} "echo 'hello'>>hello"
-  on:
-    branch: master
