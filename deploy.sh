@@ -8,8 +8,6 @@ yarn install --silent
 yarn build
 
 if [ "$(yarn --silent pm2 id ${APP_NAME})" = "[]" ]; then
-  echo 'Start'
-  echo 'Start'
   yarn start
   yarn pm2 save
 fi
