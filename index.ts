@@ -1,3 +1,5 @@
+import Database from './utils/Database'
+
 const path = require('path')
 const express = require('express')
 const app = express()
@@ -17,6 +19,8 @@ app.use(require('./routes/basic'))
 app.use('/posts', require('./routes/posts'))
 app.use('/archive', require('./routes/archive'))
 
-app.listen(port, () => {
-  console.log(`app is running on the http://localhost:${port}`)
+Database.connect(() => {
+  app.listen(port, () => {
+    console.log(`app is running on the http://localhost:${port}`)
+  })
 })
