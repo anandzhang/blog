@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "start": "pm2 start index.js -n blog --watch",
+    "start": "pm2 start index.ts -n blog --watch",
+    "stop": "pm2 stop blog",
     "test": "exit 0",
     "build": "webpack && cd public/dist/ && ls | grep .js | grep -v bundle.js | xargs rm",
     "lint": "eslint --fix --ext .js,.ts ."
@@ -14,6 +15,9 @@
     "pug": "^3.0.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/mongoose": "^5.10.3",
+    "@types/node": "^14.14.21",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -27,7 +31,6 @@
     "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
     "mini-css-extract-plugin": "^1.3.4",
-    "pm2": "^4.5.1",
     "typescript": "^4.1.3",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
