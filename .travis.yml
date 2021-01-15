@@ -11,3 +11,5 @@ deploy:
   provider: script
   script: ssh -i key -o StrictHostKeyChecking=no travis@${SERVER} /projects/blog/deploy.sh
   skip_cleanup: true
+  on:
+    all_branches: true
