@@ -1,4 +1,4 @@
-import Post from '../models/post'
+import Post from '../models/Post'
 import Pagination from '../utils/Pagination'
 import { dbFields, dbSort } from '../utils/dbParamFactory'
 
