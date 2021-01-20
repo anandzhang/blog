@@ -59,7 +59,7 @@ summary: 使用 Travis CI 对项目进行自动化部署，简单配置每次主
    ssh-keygen -f ./key -t ecdsa -b 521 -C 'travis'
    ```
 
-   `-f` 创建后密钥文件名称，`-t` 密钥算法，`-b` 密钥大小，`-C` 注释（方便服务器区分密钥）
+   `-f` 创建后密钥文件名称，`-t` 密钥算法，`-b` 密钥大小，`-C` 注释（方便服务器区分密钥），为什么使用 `ecdsa` 可以查看官方文档：[ssh-keygen](https://www.ssh.com/ssh/keygen/)。
 
    运行这个命令后会提示输入密钥加密口令，直接回车不设置。
 
@@ -139,6 +139,44 @@ summary: 使用 Travis CI 对项目进行自动化部署，简单配置每次主
 
 ```shell
 ssh -i key -o StrictHostKeyChecking=no travis@<ip> ~/deploy.blog.sh
+```
+
+但是这样不太好维护，所以我们把部署脚本放到仓库里，然后使用 `<` 标准输入执行脚本配置：
+
+```shell
+ssh -i key -o StrictHostKeyChecking=no travis@<ip> < scripts/deploy.sh
+```
+
+例如我的 `Express` 项目部署脚本：
+
+```shell
+#!/bin/bash
+
+# 项目名
+readonly APP_NAME=blog
+# Express 服务入口文件
+readonly SERVER_FILE=build/index.js
+
+# 这里使用了 pm2 对服务进行管理
+if !(command -v pm2 >/dev/null 2>&1); then 
+  yarn global add --silent pm2
+  # pm2 install typescript
+fi
+
+cd ${APP_NAME}
+# 先拉取仓库最新内容
+git pull
+# 安装依赖
+yarn install --silent
+# 构建项目（打包前端资源、编译Express服务的typescript）
+yarn build
+
+# 使用 pm2 启动项目，监听项目文件变化自动重启项目
+# 已经启动了就不再进行启动
+if [ "$(pm2 id ${APP_NAME})" = "[]" ]; then
+  pm2 start ${SERVER_FILE} -n ${APP_NAME} --watch
+  pm2 save
+fi
 ```
 
 其他复杂情况的部署需求，可以直接看 [Travis CI Doc](https://docs.travis-ci.com/) 进行额外的配置。
