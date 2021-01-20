@@ -1,18 +1,18 @@
-const Post = require('../models/post')
-const Pagination = require('../utils/Pagination')
-const { dbFields, dbSort } = require('../utils/dbParamFactory')
+import Post from '../models/post'
+import Pagination from '../utils/Pagination'
+import { dbFields, dbSort } from '../utils/dbParamFactory'
 
-exports.getCategoriesAndTags = async (req, res) => {
+export const getCategoriesAndTags = async (req: any, res: any) => {
   const usefulFields = dbFields(['category', 'tags'])
   try {
     const docs = await Post.find({}, usefulFields)
-    const data = docs.reduce((pre, cur) => {
+    const data = docs.reduce((pre: any, cur: any) => {
       const { category, tags } = cur
       // 只需要一级目录
       const dir = category.split('/').shift()
       if (!pre.categories.includes(dir)) pre.categories.push(dir)
       // 添加标签
-      tags.forEach(tag => {
+      tags.forEach((tag:any) => {
         if (!pre.tags.includes(tag)) pre.tags.push(tag)
       })
       return pre
@@ -23,7 +23,7 @@ exports.getCategoriesAndTags = async (req, res) => {
   }
 }
 
-exports.archiveByCategory = async (req, res, next) => {
+export const archiveByCategory = async (req: any, res: any, next: any) => {
   const { page, category } = req.query
   if (category) {
     const conditions = { category: { $regex: `${category}/*` } }
@@ -38,7 +38,7 @@ exports.archiveByCategory = async (req, res, next) => {
   }
 }
 
-exports.archiveByTag = async (req, res, next) => {
+export const archiveByTag = async (req: any, res: any, next: any) => {
   const { page, tag } = req.query
   if (tag) {
     const conditions = { tags: { $elemMatch: { $eq: tag } } }

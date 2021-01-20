@@ -5,8 +5,8 @@
  * @param {Boolean} showId
  * @return {Object}
  */
-exports.dbFields = (fields, hideId = true) => {
-  const result = fields.reduce((pre, cur) => {
+export const dbFields = (fields: any, hideId = true) => {
+  const result = fields.reduce((pre: any, cur: any) => {
     pre[cur] = 1
     return pre
   }, {})
@@ -21,7 +21,7 @@ exports.dbFields = (fields, hideId = true) => {
  * @param {String} mode 'ASC', 'DESC'
  * @return {Object}
  */
-exports.dbSort = (field, mode = 'ASC') => {
+export const dbSort = (field: any, mode = 'ASC') => {
   if (mode === 'ASC') return { [field]: 1 }
   else return { [field]: -1 }
 }

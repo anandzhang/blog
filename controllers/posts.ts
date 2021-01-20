@@ -1,8 +1,8 @@
 import Post from '../models/post'
-const Pagination = require('../utils/Pagination')
-const { dbSort } = require('../utils/dbParamFactory')
+import Pagination from '../utils/Pagination'
+import { dbSort } from '../utils/dbParamFactory'
 
-exports.getPosts = async (req, res) => {
+export const getPosts = async (req: any, res: any) => {
   const { page } = req.query
   const pagination = new Pagination(Post)
   const data = await pagination.getPageData(page, {}, {}, dbSort('updateTime', 'DESC'))
@@ -11,7 +11,7 @@ exports.getPosts = async (req, res) => {
   res.render('posts', { route: '/posts', previousUrl, nextUrl, ...data })
 }
 
-exports.getPost = async (req, res) => {
+export const getPost = async (req: any, res: any) => {
   try {
     const doc = await Post.findOne({ requestPath: req.originalUrl })
     if (!doc) return res.status(404).send('404 文章不存在')
