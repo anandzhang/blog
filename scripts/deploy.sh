@@ -9,10 +9,10 @@ if !(command -v pm2 >/dev/null 2>&1); then
 fi
 
 cd ${APP_NAME}
-# git pull
-# yarn install --silent
+git pull
+yarn install --silent
 yarn build
-yarn refresh
+yarn addPost
 
 if [ "$(pm2 id ${APP_NAME})" = "[]" ]; then
   pm2 start ${SERVER_FILE} -n ${APP_NAME} --watch
