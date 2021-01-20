@@ -1,7 +1,7 @@
 import Database from './utils/Database'
-import basic from './routes/basic'
-import posts from './routes/posts'
-import archive from './routes/archive'
+import basicRouter from './routes/basic'
+import postsRouter from './routes/posts'
+import archiveRouter from './routes/archive'
 
 const path = require('path')
 const express = require('express')
@@ -18,9 +18,9 @@ app.use('/', express.static(path.join(__dirname, 'public/root')))
 app.use('/images', express.static(path.join(__dirname, 'posts/images')))
 
 // 加载路由
-app.use(basic)
-app.use('/posts', posts)
-app.use('/archive', archive)
+app.use(basicRouter)
+app.use('/posts', postsRouter)
+app.use('/archive', archiveRouter)
 
 Database.connect(() => {
   app.listen(port, () => {
