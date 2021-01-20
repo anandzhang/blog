@@ -1,10 +1,10 @@
+import path from 'path'
+import express from 'express'
 import Database from './utils/Database'
 import basicRouter from './routes/basic'
 import postsRouter from './routes/posts'
 import archiveRouter from './routes/archive'
 
-const path = require('path')
-const express = require('express')
 const app = express()
 const port = 3000
 

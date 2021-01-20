@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import mongoose from 'mongoose'
-import Post from '../models/post'
+import Post from '../models/Post'
 import Database from './Database'
 import MarkdownParser from './MarkdownParser'
 
