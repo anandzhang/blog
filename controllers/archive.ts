@@ -1,8 +1,9 @@
+import { NextFunction, Request, Response } from 'express'
 import Post from '../models/Post'
 import Pagination from '../utils/Pagination'
 import { dbFields } from '../utils/dbParamFactory'
 
-export const getCategoriesAndTags = async (req: any, res: any) => {
+export const getCategoriesAndTags = async (req: Request, res: Response) => {
   const usefulFields = dbFields(['category', 'tags'])
   try {
     const docs = await Post.find({}, usefulFields)
@@ -23,12 +24,12 @@ export const getCategoriesAndTags = async (req: any, res: any) => {
   }
 }
 
-export const archiveByCategory = async (req: any, res: any, next: any) => {
+export const archiveByCategory = async (req: Request, res: Response, next: NextFunction) => {
   const { page = 1, category } = req.query
   if (category) {
     const conditions = { category: { $regex: `${category}/*` } }
     const pagesTotal = await Pagination.getPagesTotal(conditions)
-    const pageData = await Pagination.getPageData(page, conditions)
+    const pageData = await Pagination.getPageData(+page, conditions)
     const previousUrl = `${req.baseUrl}?category=${category}&page=${+page - 1}`
     const nextUrl = `${req.baseUrl}?category=${category}&page=${+page + 1}`
     res.render('posts', { category, route: '/archive', previousUrl, nextUrl, pageData, pagesTotal, current: +page })
@@ -37,12 +38,12 @@ export const archiveByCategory = async (req: any, res: any, next: any) => {
   }
 }
 
-export const archiveByTag = async (req: any, res: any, next: any) => {
+export const archiveByTag = async (req: Request, res: Response, next: NextFunction) => {
   const { page = 1, tag } = req.query
   if (tag) {
     const conditions = { tags: { $elemMatch: { $eq: tag } } }
     const pagesTotal = await Pagination.getPagesTotal(conditions)
-    const pageData = await Pagination.getPageData(page, conditions)
+    const pageData = await Pagination.getPageData(+page, conditions)
     const previousUrl = `${req.baseUrl}?tag=${tag}&page=${+page - 1}`
     const nextUrl = `${req.baseUrl}?tag=${tag}&page=${+page + 1}`
     res.render('posts', { tag, route: '/archive', previousUrl, nextUrl, pageData, pagesTotal, current: +page })
