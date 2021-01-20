@@ -13,6 +13,7 @@ cd ${APP_NAME}
 # yarn install --silent
 yarn build
 yarn addPost
+exit 1
 
 if [ "$(pm2 id ${APP_NAME})" = "[]" ]; then
   pm2 start ${SERVER_FILE} -n ${APP_NAME} --watch
