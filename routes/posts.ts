@@ -2,12 +2,13 @@
  * /posts 路由
  */
 import express from 'express'
-const router = express.Router()
-const controllers = require('../controllers/posts')
+import { getPosts, getPost } from '../controllers/posts'
 
-router.get('/', controllers.getPosts)
+const router = express.Router()
+
+router.get('/', getPosts)
 
 // Eg: /posts/frontend/1
-router.get('/*/\\d+', controllers.getPost)
+router.get('/*/\\d+', getPost)
 
 export default router
