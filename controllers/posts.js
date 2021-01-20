@@ -1,4 +1,4 @@
-const Post = require('../models/post')
+import Post from '../models/post'
 const Pagination = require('../utils/Pagination')
 const { dbSort } = require('../utils/dbParamFactory')
 
