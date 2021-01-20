@@ -1,14 +1,13 @@
 import Post from '../models/Post'
 import Pagination from '../utils/Pagination'
-import { dbSort } from '../utils/dbParamFactory'
 
 export const getPosts = async (req: any, res: any) => {
-  const { page } = req.query
-  const pagination = new Pagination(Post)
-  const data = await pagination.getPageData(page, {}, {}, dbSort('updateTime', 'DESC'))
-  const previousUrl = `${req.baseUrl}?page=${+data.current - 1}`
-  const nextUrl = `${req.baseUrl}?page=${+data.current + 1}`
-  res.render('posts', { route: '/posts', previousUrl, nextUrl, ...data })
+  const { page = 1 } = req.query
+  const pagesTotal = await Pagination.getPagesTotal()
+  const pageData = await Pagination.getPageData(page)
+  const previousUrl = `${req.baseUrl}?page=${+page - 1}`
+  const nextUrl = `${req.baseUrl}?page=${+page + 1}`
+  res.render('posts', { route: '/posts', previousUrl, nextUrl, pageData, pagesTotal, current: +page })
 }
 
 export const getPost = async (req: any, res: any) => {

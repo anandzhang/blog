@@ -13,15 +13,3 @@ export const dbFields = (fields: any, hideId = true) => {
   if (hideId) result._id = 0
   return result
 }
-
-/**
- * 按字段进行升/降序
- *
- * @param {Array} field
- * @param {String} mode 'ASC', 'DESC'
- * @return {Object}
- */
-export const dbSort = (field: any, mode = 'ASC') => {
-  if (mode === 'ASC') return { [field]: 1 }
-  else return { [field]: -1 }
-}

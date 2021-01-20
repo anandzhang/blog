@@ -1,22 +1,25 @@
-/**
- * 分页
- *
- * @class Pagination
- */
+import Post from '../models/Post'
+
+const pageField = {
+  _id: 0,
+  title: 1,
+  createTime: 1,
+  updateTime: 1,
+  summary: 1,
+  requestPath: 1
+}
+
 class Pagination {
-  dataSource: any
-  pageSize: any
-  constructor (dataSource: any, pageSize = 8) {
-    this.dataSource = dataSource
-    this.pageSize = pageSize
+  private static pageSize: number = 8
+
+  static async getPagesTotal (conditions: object = {}) {
+    const docsTotal = await Post.countDocuments(conditions)
+    return Math.ceil(docsTotal / this.pageSize)
   }
 
-  async getPageData (current = 1, conditions: any, fields: any, sort: any) {
-    const docsTotal = await this.dataSource.countDocuments(conditions)
-    const pagesTotal = Math.ceil(docsTotal / this.pageSize)
+  static async getPageData (current = 1, conditions = {}, sort = { updateTime: -1 }) {
     const start = (current - 1) * this.pageSize
-    const pageData = await this.dataSource.find(conditions, fields).sort(sort).skip(start).limit(this.pageSize)
-    return { pageData, current, pagesTotal }
+    return await Post.find(conditions, pageField).sort(sort).skip(start).limit(this.pageSize)
   }
 }
 
