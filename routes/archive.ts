@@ -1,14 +1,14 @@
 /**
  * /archive 路由
  */
-const express = require('express')
-const router = express.Router()
-const {
+import express from 'express'
+import {
   archiveByCategory,
   archiveByTag,
   getCategoriesAndTags
-} = require('../controllers/archive')
+} from '../controllers/archive'
+const router = express.Router()
 
 router.get('/', archiveByCategory, archiveByTag, getCategoriesAndTags)
 
-module.exports = router
+export default router

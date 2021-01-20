@@ -4,12 +4,14 @@
  * @class Pagination
  */
 class Pagination {
-  constructor (dataSource, pageSize = 8) {
+  dataSource: any
+  pageSize: any
+  constructor (dataSource: any, pageSize = 8) {
     this.dataSource = dataSource
     this.pageSize = pageSize
   }
 
-  async getPageData (current = 1, conditions, fields, sort) {
+  async getPageData (current = 1, conditions: any, fields: any, sort: any) {
     const docsTotal = await this.dataSource.countDocuments(conditions)
     const pagesTotal = Math.ceil(docsTotal / this.pageSize)
     const start = (current - 1) * this.pageSize
@@ -18,4 +20,4 @@ class Pagination {
   }
 }
 
-module.exports = Pagination
+export default Pagination
