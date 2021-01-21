@@ -10,6 +10,9 @@ import { promisify } from 'util'
       await promisify(exec)('rm -rf build')
       await promisify(exec)('yarn tsc')
       await promisify(exec)('cp -r public views build')
+      // 图片资源
+      await promisify(exec)('mkdir -p build/posts/images')
+      await promisify(exec)('cp -r posts/images build/posts')
     } catch (error) {
       console.log(error)
     }
