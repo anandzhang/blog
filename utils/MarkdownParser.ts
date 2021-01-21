@@ -40,7 +40,7 @@ class MarkdownParser {
     parseContent (requestPath: string) {
       // 追加版权声明
       let copyright = fs.readFileSync('copyright.md').toString()
-      const postURL = `https://anandzhang.com/${requestPath}`
+      const postURL = `https://anandzhang.com${requestPath}`
       copyright = copyright.replace('postURL', postURL).replace('postURL', postURL)
       // 文章末尾空行
       if (this.content.slice(-1) !== '\n') this.content += '\n'
