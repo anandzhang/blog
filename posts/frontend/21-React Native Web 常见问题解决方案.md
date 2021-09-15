@@ -40,7 +40,7 @@ Toast.propTypes = {
 
 ### 解决方案
 
-修改 `react-native-web` 依赖包中的文件，添加需要的 `propTypes` 。
+修改 `react-native-web` 依赖包中的文件，添加需要的 `propTypes` ，例子可见 [react-native-web-example/patches](https://github.com/anandzhang/react-native-web-example/blob/main/patches/react-native-web%2B0.17.1.patch) 。
 
 1. `node_modules/react-native-web/dist/index.js` 中添加导出：
 
@@ -51,7 +51,7 @@ Toast.propTypes = {
 2. `node_modules/react-native-web/dist/exports/Image/index.js` 中添加：
 
    ```javascript
-   Image.propTypes = { style: () => {} };
+   Image.propTypes = { style: () => {}, source: () => {}};
    ```
 
 3. `node_modules/react-native-web/dist/exports/Text/index.js` 中添加：
