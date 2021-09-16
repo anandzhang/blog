@@ -174,6 +174,8 @@ const Example = () => {
 export default Example
 ```
 
+在 `react-native-web` 上 `StyleSheet.create` 返回的是一个样式对象的 `id` ，是为了优化性能。
+
 ### 解决方案
 
 所以，如果项目存在从样式对象里取值，你需要使用 `StyleSheet.flatten` 方法包裹一下：
@@ -222,7 +224,7 @@ Uncaught ReferenceError: Buffer is not defined
 
 ### 解决方案
 
-使用 `webpack` 提供的 `ProvidePlugin` 插件配置一下，让项目使用 `Buffer` 时先调用依赖 `buffer` 库或者直接使用浏览器的 `Buffer` 对象。
+使用 `webpack` 提供的 `ProvidePlugin` 插件配置一下，让项目使用 `Buffer` 时调用依赖 `buffer` 库的 `Buffer` 对象。
 
 ```javascript
 return {
