@@ -17,7 +17,7 @@
     <body>
         <header class="header">
             <nav>
-                <h1 class="title">Anand's Blog</h1>
+                <p class="title">Anand's Blog</p>
                 <ul class="navlist">
                     <li><a href="/">主页</a></li>
                     <li><a href="/posts">文章</a></li>
@@ -25,23 +25,32 @@
                 </ul>
             </nav>
         </header>
-        <main class="main">
+        <main class="posts">
+            <h1 class="hidden-text">文章 - Anand's Blog</h1>
             <ol>
                 <li>
                     <h2>
                         <a href="">React Native Web 常见问题解决方案</a>
                     </h2>
-                    <p>2021-09-15</p>
+                    <p class="time">2021-09-15</p>
                     <p>解决在使用 react-native-web 对原有 react-native 项目提供网页端支持时遇到的一些问题。</p>
                 </li>
                 <li>
                     <h2>
                         <a href="">React Native Web 常见问题解决方案</a>
                     </h2>
-                    <p>2021-09-15</p>
+                    <p class="time">2021-09-15</p>
                     <p>解决在使用 react-native-web 对原有 react-native 项目提供网页端支持时遇到的一些问题。</p>
                 </li>
             </ol>
+            <div class="pagination">
+                <a class="button" href="">&larr; 最近</a>
+                <span class="page-number">
+                    <span class="current">1</span>
+                    <span>/7</span>
+                </span>
+                <a class="button" href="">更早 &rarr;</a>
+            </div>
         </main>
         <footer class="footer">
             <a href="http://beian.miit.gov.cn/">蜀ICP备20003489号</a>
