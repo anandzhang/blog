@@ -39,7 +39,7 @@ interface IFile {
   path: string
 }
 
-const readFileInDir = async (dirPath: string) => {
+export const readFileInDir = async (dirPath: string) => {
   const files: IFile[] = []
   const dir = await fs.readdir(dirPath, { withFileTypes: true })
   for (const dirent of dir) {
@@ -60,7 +60,7 @@ const readFileInDir = async (dirPath: string) => {
   return files
 }
 
-const parseFilename = (filename: string) => {
+export const parseFilename = (filename: string) => {
   const extname = path.extname(filename)
   return filename.replace(extname, '').split('-')
 }
