@@ -5,7 +5,8 @@
     "addPost": "ts-node utils/addPost.ts",
     "test": "exit 0",
     "build": "ts-node scripts/build.ts",
-    "lint": "eslint --fix --ext .js,.ts ."
+    "lint": "eslint --fix --ext .js,.ts .",
+    "docker": "./docker/run.sh"
   },
   "dependencies": {
     "express": "^4.17.1",
