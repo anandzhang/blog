@@ -49,7 +49,6 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    width: 1200px;
     margin: 2rem auto 0;
     font-size: 0.75rem;
 }
@@ -121,8 +120,7 @@ main.posts li .time {
 }
 
 /* 
----------- about ----------
-*/
+---------- about ---------- */
 main.about {
     max-width: 1200px;
     margin: 1.8rem auto;
@@ -133,4 +131,92 @@ main.about p {
     line-height: 1.5;
     text-indent: 2em;
     font-size: 1.1rem;
+}
+
+
+/* Mobile Bar
+------------------------------ */
+.mobile-btn {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: 5%;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.mobile-btn::before,
+.mobile-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+    transition: .5s;
+}
+
+.mobile-btn::after {
+    bottom: 0;
+}
+
+.mobile-btn .line {
+    margin-top: 8px;
+    height: 2px;
+    background-color: #000;
+    transition: .3s;
+}
+
+.header.close .mobile-btn::before {
+    top: 8px;
+    transform: rotate(45deg);
+}
+
+.header.close .mobile-btn::after {
+    bottom: 8px;
+    transform: rotate(-45deg);
+}
+
+.header.close .mobile-btn .line {
+    opacity: 0;
+}
+
+.header.close .title {
+    display: none;
+}
+
+.header.close .navlist {
+    display: flex;
+}
+
+/* Responsive
+------------------------------ */
+@media screen and (max-width: 1200px) {
+
+    .header,
+    .main,
+    .posts {
+        padding: 0 2rem;
+    }
+
+    main.container {
+        padding: 0 5%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header .title {
+        margin: 0 auto;
+    }
+
+    .header .navlist {
+        display: none;
+        margin: 0 auto;
+    }
+
+    .mobile-btn {
+        display: block;
+    }
 }
