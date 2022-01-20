@@ -59,6 +59,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    max-width: 1200px;
     margin: 2rem auto 0;
     font-size: 0.75rem;
 }
@@ -207,7 +208,8 @@ main.about p {
 
     .header,
     .main,
-    .posts {
+    .posts,
+    .footer {
         padding: 0 2rem;
     }
 
