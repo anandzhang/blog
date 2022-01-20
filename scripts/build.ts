@@ -95,6 +95,11 @@ readAllPost()
 const main = async () => {
   await promisify(exec)('mkdir -p ../build/style', { cwd: __dirname })
   await readAllPost()
+
+  // FIXME: posts => posts1，nginx处理query参数page时，set arg_page 1;暂时有问题
+  await promisify(exec)('cp ../build/posts1.html ../build/posts.html', { cwd: __dirname })
+
+  await readAllPost()
   // 文章图片
   await promisify(exec)('cp -r ../posts/images/ ../build/images/', { cwd: __dirname })
 
@@ -107,6 +112,9 @@ const main = async () => {
     ],
     output: resolvePath('../build/style/bundle.css')
   })
+
+  // Markdown css
+  await promisify(exec)('cp ../public/dist/markdown.css ../build/style/markdown.css', { cwd: __dirname })
 
   // 处理图片
   exec('cp -r ../v2/image/ ../build/images/', { cwd: __dirname }, (err) => {
