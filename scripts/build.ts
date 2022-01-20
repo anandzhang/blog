@@ -83,6 +83,23 @@ const readAllPost = async () => {
     result = result.replace('{{ content }}', content)
     result = result.replace('{{ current }}', page + '')
     result = result.replace('{{ total }}', len + '')
+
+    if (page === 1) {
+      result = result.replace('{{ previousClassName }}', 'hidden')
+      result = result.replace('{{ previousUrl }}', '')
+    } else {
+      result = result.replace('{{ previousClassName }}', '')
+      result = result.replace('{{ previousUrl }}', `/posts?page=${page - 1}`)
+    }
+
+    if (page === len) {
+      result = result.replace('{{ nextClassName }}', 'hidden')
+      result = result.replace('{{ nextUrl }}', '')
+    } else {
+      result = result.replace('{{ nextClassName }}', '')
+      result = result.replace('{{ nextUrl }}', `/posts?page=${page + 1}`)
+    }
+
     const data = await minify({
       compressor: htmlMinifier,
       content: result

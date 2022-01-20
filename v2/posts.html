@@ -19,10 +19,13 @@
                 <p class="title">Anand's Blog</p>
                 <ul class="navlist">
                     <li><a href="/">主页</a></li>
-                    <li><a href="/posts">文章</a></li>
+                    <li class="active"><a href="/posts">文章</a></li>
                     <li><a href="/about">关于我</a></li>
                 </ul>
             </nav>
+            <div class="mobile-btn">
+                <div class="line"></div>
+            </div>
         </header>
         <main class="posts">
             <h1 class="hidden-text">文章 - Anand's Blog</h1>
@@ -30,12 +33,12 @@
                 {{ content }}
             </ol>
             <div class="pagination">
-                <a class="button" href="">&larr; 最近</a>
+                <a class="button {{ previousClassName }}" href="{{ previousUrl }}">&larr; 最近</a>
                 <span class="page-number">
                     <span class="current">{{ current }}</span>
                     <span>/{{ total }}</span>
                 </span>
-                <a class="button" href="">更早 &rarr;</a>
+                <a class="button {{ nextClassName }}" href="{{ nextUrl }}">更早 &rarr;</a>
             </div>
         </main>
         <footer class="footer">
@@ -45,5 +48,9 @@
                 <span>川公网安备51018102000120号</span>
             </a>
         </footer>
+        <script>
+            var m = document.querySelector(".mobile-btn"); var h = document.querySelector(".header");
+            m.onclick = function () { h.classList.toggle("close") };
+        </script>
     </body>
 </html>

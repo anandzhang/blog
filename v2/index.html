@@ -18,15 +18,19 @@
             <nav>
                 <h1 class="title">Anand's Blog</h1>
                 <ul class="navlist">
-                    <li><a href="/">主页</a></li>
+                    <li class="active"><a href="/">主页</a></li>
                     <li><a href="/posts">文章</a></li>
                     <li><a href="/about">关于我</a></li>
                 </ul>
             </nav>
+            <div class="mobile-btn">
+                <div class="line"></div>
+            </div>
         </header>
         <main class="main">
             <p class="saying">人而不学，其犹正墙面而立。</p>
             <p>译：人如果不学习，就像面对墙壁站着，什么东西也看不见。</p>
+            <a class="enter" href="/posts">博客文章</a>
         </main>
         <footer class="footer">
             <a href="http://beian.miit.gov.cn/">蜀ICP备20003489号</a>
@@ -35,5 +39,9 @@
                 <span>川公网安备51018102000120号</span>
             </a>
         </footer>
+        <script>
+            var m = document.querySelector(".mobile-btn"); var h = document.querySelector(".header");
+            m.onclick = function () { h.classList.toggle("close") };
+        </script>
     </body>
 </html>
