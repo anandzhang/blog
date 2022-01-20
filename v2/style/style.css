@@ -2,7 +2,7 @@ body {
     color: #2a2a2a;
     font-size: 16px;
     font-family: 'Noto Serif SC', serif;
-    background-color: #fffdf5;
+    background-color: #fef9f4;
 }
 
 .hidden-text {
@@ -34,6 +34,16 @@ body {
 
 .navlist>li {
     margin-left: 1.2rem;
+}
+
+.navlist a:hover {
+    font-weight: bold;
+}
+
+.navlist li.active a {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 1px solid #000;
 }
 
 .main {
