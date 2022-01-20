@@ -33,12 +33,12 @@
                 {{ content }}
             </ol>
             <div class="pagination">
-                <a class="button" href="">&larr; 最近</a>
+                <a class="button {{ previousClassName }}" href="{{ previousUrl }}">&larr; 最近</a>
                 <span class="page-number">
                     <span class="current">{{ current }}</span>
                     <span>/{{ total }}</span>
                 </span>
-                <a class="button" href="">更早 &rarr;</a>
+                <a class="button {{ nextClassName }}" href="{{ nextUrl }}">更早 &rarr;</a>
             </div>
         </main>
         <footer class="footer">

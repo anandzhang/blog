@@ -120,6 +120,10 @@ main.posts li .time {
     border-radius: 10px;
 }
 
+.pagination .button.hidden {
+    display: none;
+}
+
 .pagination .page-number {
     margin: 0 10px;
 }
