@@ -143,7 +143,8 @@ const main = async () => {
     compressor: htmlMinifier,
     input: [
       resolvePath('../v2/index.html'),
-      resolvePath('../v2/about.html')
+      resolvePath('../v2/about.html'),
+      resolvePath('../v2/not-found.html')
     ],
     output: resolvePath('../build/$1.html')
   })
