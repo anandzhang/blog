@@ -32,7 +32,7 @@ body {
     display: flex;
 }
 
-.navlist>li {
+.navlist > li {
     margin-left: 1.2rem;
 }
 
@@ -87,7 +87,7 @@ body {
     width: 12px;
 }
 
-/* 
+/*
 ---------- Posts ----------
 */
 main.posts {
@@ -142,7 +142,7 @@ main.posts li .time {
     font-weight: bold;
 }
 
-/* 
+/*
 ---------- about ---------- */
 main.about {
     max-width: 1200px;
@@ -156,6 +156,58 @@ main.about p {
     font-size: 1.1rem;
 }
 
+/*
+---------- not-found ---------- */
+main.not-found {
+    max-width: 1200px;
+    margin: 5rem auto;
+}
+
+main.not-found p {
+    margin: 10px 0;
+    line-height: 1.5;
+    text-indent: 2.8rem;
+    font-size: 1.1rem;
+}
+
+main.not-found .code {
+    font-size: 0.9rem;
+}
+
+main.not-found .title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+main.not-found .back {
+    margin-left: 2.8rem;
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    border-radius: 6px;
+}
+
+main.not-found .wave-wrap {
+    position: absolute;
+    top: 3rem;
+    transform: rotate(44deg);
+}
+
+main.not-found .wave-path {
+    stroke: #3a3a3a;
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 1200;
+    animation: wave-line 2s infinite linear;
+}
+
+@keyframes wave-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
 
 /* Mobile Bar
 ------------------------------ */
