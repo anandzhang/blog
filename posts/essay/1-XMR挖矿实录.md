@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: XMR
+priority: 0.8
 createTime: 2020-03-20
 updateTime: 2020-03-20
 keywords: XMR挖矿

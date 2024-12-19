@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: ci
+priority: 0.8
 createTime: 2021-01-15
 updateTime: 2021-01-15
 keywords: ci部署,travis ci项目部署,travis ci项目自动化部署

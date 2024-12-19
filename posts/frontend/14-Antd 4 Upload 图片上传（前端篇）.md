@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: antd
+priority: 0.9
 createTime: 2020-04-18
 updateTime: 2020-04-18
 keywords: ant design upload怎么用,antd怎么上传图片,antd表单怎么拿到upload值

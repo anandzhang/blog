@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: windows,VMware
+priority: 0.8
 createTime: 2018-02-21
 updateTime: 2018-02-21
 keywords: VMware安装Win7,windows7虚拟机安装

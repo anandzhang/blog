@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: macOS,terminal,iTerm
+priority: 0.9
 createTime: 2019-08-05
 updateTime: 2019-08-05
 keywords: mac终端,iTerm,macOS配置终端

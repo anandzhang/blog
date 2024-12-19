@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: ivy
+priority: 0.6
 createTime: 2020-03-11
 updateTime: 2020-03-11
 keywords: vps,搬瓦工,Vultr

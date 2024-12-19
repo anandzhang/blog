@@ -4,6 +4,9 @@ import fs from 'fs/promises'
 import { promisify } from 'util'
 import { readFileInDir, parseFilename } from '../utils/addPost'
 import MarkdownParser from '../utils/MarkdownParser'
+import { SitemapStream } from 'sitemap'
+import { createWriteStream } from 'node:fs'
+
 const minify = require('@node-minify/core')
 const cssMinifier = require('@node-minify/clean-css')
 const htmlMinifier = require('@node-minify/html-minifier')
@@ -13,7 +16,7 @@ const resolvePath = (relativePath: string) => {
 }
 
 // 1. 扫描所有文章
-const readAllPost = async () => {
+const readAllPost = async (sitemap?: SitemapStream) => {
   const files = await readFileInDir('posts')
   const result = []
   const template = await fs.readFile(resolvePath('../v2/template/post.html'))
@@ -47,6 +50,12 @@ const readAllPost = async () => {
       updateTime: fields.updateTime,
       summary: fields.summary,
       requestPath
+    })
+    sitemap?.write({
+      url: requestPath,
+      changefreq: 'monthly',
+      lastmod: fields.updateTime,
+      priority: fields.priority
     })
   }
 
@@ -107,16 +116,40 @@ const readAllPost = async () => {
     await fs.writeFile(resolvePath(`../build/posts${page}.html`), data)
   }
 }
-readAllPost()
+// readAllPost()
 
+// TODO: 隔太久了，为啥执行两次 readAllPost ？？
 const main = async () => {
   await promisify(exec)('mkdir -p ../build/style', { cwd: __dirname })
   await readAllPost()
 
+  // Sitemap 工具
+  const sitemap = new SitemapStream({
+    hostname: 'https://anandzhang.com',
+    lastmodDateOnly: true
+  })
+  sitemap.pipe(createWriteStream(resolvePath('../build/sitemap.xml')))
+
+  sitemap.write({
+    url: '',
+    changefreq: 'monthly',
+    priority: 1.0
+  })
+  sitemap.write({
+    url: '/posts',
+    changefreq: 'weekly',
+    priority: 0.8
+  })
+  sitemap.write({
+    url: '/about',
+    changefreq: 'monthly',
+    priority: 0.5
+  })
+
   // FIXME: posts => posts1，nginx处理query参数page时，set arg_page 1;暂时有问题
   await promisify(exec)('cp ../build/posts1.html ../build/posts.html', { cwd: __dirname })
 
-  await readAllPost()
+  await readAllPost(sitemap)
   // 文章图片
   await promisify(exec)('cp -r ../posts/images/ ../build/images/', { cwd: __dirname })
 
@@ -133,6 +166,9 @@ const main = async () => {
   // Markdown css
   await promisify(exec)('cp ../public/dist/markdown.css ../build/style/markdown.css', { cwd: __dirname })
 
+  // robots.txt
+  await promisify(exec)('cp ../public/root/robots.txt ../build/robots.txt', { cwd: __dirname })
+
   // 处理图片
   exec('cp -r ../v2/image/ ../build/images/', { cwd: __dirname }, (err) => {
     console.log(err)
@@ -148,6 +184,8 @@ const main = async () => {
     ],
     output: resolvePath('../build/$1.html')
   })
+
+  sitemap.end()
 }
 
 main()
