@@ -5,6 +5,7 @@ import md from './markdown'
 const REG_FRONT_MATTER = /---\s*(.*?)\s*---\s*/ms
 // 贪婪匹配拿到需要的数据
 const REG_TAGS = /tags:\s*(.*)/
+const REG_PRIORITY = /priority:\s*(.*)/
 const REG_CREATE_TIME = /createTime:\s*(.*)/
 const REG_UPDATE_TIME = /updateTime:\s*(.*)/
 const REG_KEYWORDS = /keywords:\s*(.*)/
@@ -12,6 +13,7 @@ const REG_SUMMARY = /summary:\s*(.*)/
 
 interface yamlMeta {
   tags: string[],
+  priority: number,
   createTime: string,
   updateTime: string,
   keywords: string,
@@ -30,6 +32,7 @@ class MarkdownParser {
     parseYAMLFrontMatter (): yamlMeta {
       return {
         tags: REG_TAGS.exec(this.frontMatter)?.[1].split(',') || [],
+        priority: +(REG_PRIORITY.exec(this.frontMatter)?.[1] || 0.7),
         createTime: REG_CREATE_TIME.exec(this.frontMatter)?.[1] || '',
         updateTime: REG_UPDATE_TIME.exec(this.frontMatter)?.[1] || '',
         keywords: REG_KEYWORDS.exec(this.frontMatter)?.[1] || '',

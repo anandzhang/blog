@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: linux,ubuntu
+priority: 0.8
 createTime: 2020-01-20
 updateTime: 2020-01-20
 keywords: 安装Ubuntu,安装Linux Ubuntu双系统

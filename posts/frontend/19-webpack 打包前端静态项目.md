@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: webpack
+priority: 0.8
 createTime: 2021-01-13
 updateTime: 2021-01-13
 keywords: webpack打包,webpack打包前端项目,webpack打包前端静态资源项目

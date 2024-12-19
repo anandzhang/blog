@@ -1,6 +1,7 @@
 ---
 typora-root-url: ../
 tags: windows
+priority: 0.8
 createTime: 2018-03-02
 updateTime: 2019-12-02
 keywords: 
