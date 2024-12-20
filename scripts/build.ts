@@ -120,6 +120,9 @@ const readAllPost = async (sitemap?: SitemapStream) => {
 
 // TODO: 隔太久了，为啥执行两次 readAllPost ？？
 const main = async () => {
+  // 根目录资源
+  await promisify(exec)('cp -r ../public/root/. ../build/', { cwd: __dirname })
+
   await promisify(exec)('mkdir -p ../build/style', { cwd: __dirname })
   await readAllPost()
 
@@ -165,9 +168,6 @@ const main = async () => {
 
   // Markdown css
   await promisify(exec)('cp ../public/dist/markdown.css ../build/style/markdown.css', { cwd: __dirname })
-
-  // robots.txt
-  await promisify(exec)('cp ../public/root/robots.txt ../build/robots.txt', { cwd: __dirname })
 
   // 处理图片
   exec('cp -r ../v2/image/ ../build/images/', { cwd: __dirname }, (err) => {
